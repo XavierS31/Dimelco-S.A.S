@@ -1,279 +1,281 @@
-import React from "react";
-import "./MainPage.css";
+import React, { useState } from 'react';
+import logo from '../assets/DimelcoSASGreen.png';
+import heroBg from '../assets/cucutaBG.jpg';
+import './mainpage.css';
 
-const services = [
-  { title: "Diseño y construcción de redes de gas", desc: "Gasoductos y redes de distribución de Gas Natural y Propano (GN/GLP)." },
-  { title: "Obras civiles y estaciones", desc: "Obras civiles y mecánicas para estaciones de distribución y ERM." },
-  { title: "Montajes electromecánicos", desc: "Montaje y mantenimiento de tuberías, equipos industriales y estructuras." },
-  { title: "Plantas y almacenamiento GLP", desc: "Diseño y construcción de plantas de almacenamiento/llenado e inspección de tanques." },
-  { title: "Mantenimiento y emergencias", desc: "Atención de escapes, mantenimiento de redes e instalaciones de GN y GLP." },
-  { title: "Climatización y energías alternativas", desc: "Sistemas de aire acondicionado, calefacción y calentamiento de agua a gas y energía solar." },
-];
+const MainPage = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [email, setEmail] = useState('');
 
-const values = [
-  { title: "Responsabilidad", desc: "Cumplimiento y logro efectivo en cada proyecto." },
-  { title: "Honestidad", desc: "Transparencia para construir aliados y relaciones a largo plazo." },
-  { title: "Lealtad", desc: "Confianza y compromiso con colaboradores y clientes." },
-];
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault();
+    // Newsletter signup logic
+  };
 
-export default function MainPage() {
   return (
-    <div className="dml-root">
-      {/* Top bar */}
-      <header className="dml-topbar">
-        <div className="dml-topbar__inner">
-          <nav className="dml-nav dml-nav--left">
-            <a className="dml-nav__link" href="#servicios">Servicios</a>
-            <a className="dml-nav__link" href="#empresa">Empresa</a>
-            <a className="dml-nav__link" href="#clientes">Clientes</a>
-          </nav>
-
-          <div className="dml-brand">
-            <img className="dml-brand__logo dml-brand__logo--large" src="/DimelcoSASlogo.png" alt="DIMELCO S.A.S." />
-            <div className="dml-brand__text">
-              <div className="dml-brand__name">DIMELCO S.A.S.</div>
-              <div className="dml-brand__tagline">
-                Ingeniería • Gas combustible • Obras civiles • Montajes electromecánicos
-              </div>
+    <div className="min-h-screen w-full bg-slate-50 text-slate-900 font-sans scroll-smooth">
+      {/* Header */}
+      <header className="bg-white shadow-sm sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            <div className="flex-shrink-0 flex items-center gap-2">
+              <img src={logo} alt="Dimelco S.A.S." className="h-12 w-auto object-contain" />
+              <span className="text-xl font-bold text-slate-900 hidden sm:inline">DIMELCO S.A.S</span>
             </div>
-          </div>
 
-          <nav className="dml-nav dml-nav--right">
-            <a className="dml-nav__link" href="#nosotros">Nosotros</a>
-            <a className="dml-nav__link" href="#contacto">Contacto</a>
-            <a className="dml-btn dml-btn--primary" href="#cotizar">Cotizar</a>
-          </nav>
+            <nav className="hidden md:flex items-center gap-8">
+              <a className="text-black hover:text-[#559A32] font-medium transition-colors" href="#home">Inicio</a>
+              <a className="text-black hover:text-[#559A32] font-medium transition-colors" href="#about">Nosotros</a>
+              <a className="text-black hover:text-[#559A32] font-medium transition-colors" href="#services">Servicios</a>
+              <a className="text-black hover:text-[#559A32] font-medium transition-colors" href="#projects">Proyectos</a>
+              <a className="text-black hover:text-[#559A32] font-medium transition-colors" href="#projects">Carreras</a>
+              <a className="bg-[#559A32] text-white px-5 py-2.5 rounded-lg font-semibold hover:brightness-110 transition-colors" href="#contact">Contáctanos</a>
+            </nav>
+
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 text-slate-600"
+              aria-label="Menú"
+            >
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+              </svg>
+            </button>
+          </div>
         </div>
+
+        {isMenuOpen && (
+          <div className="md:hidden bg-white border-t border-slate-100 px-4 py-4 space-y-3">
+            <a className="block py-2 text-black" href="#home" onClick={() => setIsMenuOpen(false)}>Inicio</a>
+            <a className="block py-2 text-black" href="#about" onClick={() => setIsMenuOpen(false)}>Nosotros</a>
+            <a className="block py-2 text-black" href="#services" onClick={() => setIsMenuOpen(false)}>Servicios</a>
+            <a className="block py-2 text-black" href="#projects" onClick={() => setIsMenuOpen(false)}>Proyectos</a>
+            <a className="block py-2 text-[#559A32] font-bold" href="#contact" onClick={() => setIsMenuOpen(false)}>Contáctanos</a>
+          </div>
+        )}
       </header>
 
-      {/* Hero */}
-      <section className="dml-hero">
-        <div className="dml-container">
-          <div>
-            <div className="dml-badge">
-              <span className="dml-badge__dot" />
-              Diseños, montajes electromecánicos, civiles y de gas combustible
-            </div>
-
-            <h1 className="dml-h1">
-              Construimos y mantenemos <span className="dml-accent">infraestructura</span> con calidad y cumplimiento.
+      <main>
+        {/* Hero Section */}
+        <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden" id="home">
+          <div className="absolute inset-0 z-0">
+            <img src={heroBg} alt="Paisaje de Cúcuta" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 hero-overlay" />
+          </div>
+          <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+              Lideres en Soluciones de Ingeniería.
+            
             </h1>
-
-            <p className="dml-lead">
-              DIMELCO S.A.S. es una empresa de ingeniería y servicios con experiencia en Gas Natural (GN) y GLP,
-              obras civiles, montajes electromecánicos, climatización y energías alternativas.
+            <p className="text-lg md:text-xl text-slate-200 mb-10 max-w-2xl mx-auto">
+              Brindamos infraestructura y servicios eléctricos de alta calidad para el desarrollo moderno de nuestra región.
             </p>
-
-            <div className="dml-actions">
-              <a className="dml-btn dml-btn--primary" href="#cotizar">Solicitar cotización</a>
-              <a className="dml-btn dml-btn--ghost" href="#servicios">Ver servicios</a>
-            </div>
-
-            <div className="dml-stats">
-              <div className="dml-stat">
-                <div className="dml-stat__k">+2004</div>
-                <div className="dml-stat__v">Experiencia en proyectos</div>
-              </div>
-              <div className="dml-stat">
-                <div className="dml-stat__k">GN / GLP</div>
-                <div className="dml-stat__v">Redes • almacenamiento • mantenimiento</div>
-              </div>
-              <div className="dml-stat">
-                <div className="dml-stat__k">Calidad</div>
-                <div className="dml-stat__v">Normas técnicas y buenas prácticas</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services */}
-      <section id="servicios" className="dml-section">
-        <div className="dml-container">
-          <div className="dml-section__head">
-            <div>
-              <h2 className="dml-h2">Servicios</h2>
-              <p className="dml-muted">
-                Construcción y edificación, redes de gasoductos, infraestructura, montajes electromecánicos y servicios complementarios.
-              </p>
-            </div>
-            <div className="dml-badges">
-              <span className="dml-badge dml-badge--small"><span className="dml-badge__dot" />GN / GLP</span>
-              <span className="dml-badge dml-badge--small"><span className="dml-badge__dot" />Obras civiles</span>
-              <span className="dml-badge dml-badge--small"><span className="dml-badge__dot" />Electromecánica</span>
-            </div>
-          </div>
-
-          <div className="dml-grid-3">
-            {services.map((s) => (
-              <div key={s.title} className="dml-card">
-                <div className="dml-card__row">
-                  <span className="dml-bullet" />
-                  <h3 className="dml-h3">{s.title}</h3>
-                </div>
-                <p className="dml-muted">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="dml-footnote">
-            También: protección catódica, sandblasting y pintura, fabricación/montaje de tanques y estructuras, capacitación y evaluación.
-          </div>
-        </div>
-      </section>
-
-      {/* Company */}
-      <section id="empresa" className="dml-section dml-section--white">
-        <div className="dml-container dml-company">
-          <div>
-            <h2 className="dml-h2">Nuestra empresa</h2>
-            <p className="dml-muted">
-              Empresa de ingeniería y servicios con experiencia en gases combustibles, climatización y energías alternativas.
-            </p>
-
-            <div className="dml-grid-2">
-              <div className="dml-card dml-card--soft">
-                <div className="dml-card__title">Misión</div>
-                <p className="dml-muted">
-                  Permanecer como líderes, ofreciendo construcción, ejecución y mantenimiento con talento humano capacitado.
-                </p>
-              </div>
-              <div className="dml-card dml-card--soft">
-                <div className="dml-card__title">Visión</div>
-                <p className="dml-muted">
-                  Ser empresa líder en obras civiles y servicios, con altos estándares de calidad, cumplimiento y servicio al cliente.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <aside className="dml-card dml-card--grad">
-            <div className="dml-card__title">Valores corporativos</div>
-            <div className="dml-stack">
-              {values.map((v) => (
-                <div key={v.title} className="dml-card dml-card--inner">
-                  <div className="dml-card__row">
-                    <span className="dml-dot" />
-                    <div className="dml-strong">{v.title}</div>
-                  </div>
-                  <div className="dml-muted">{v.desc}</div>
-                </div>
-              ))}
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      {/* Clients */}
-      <section id="clientes" className="dml-section">
-        <div className="dml-container">
-          <h2 className="dml-h2">Principales clientes</h2>
-          <p className="dml-muted">
-            Experiencia en gasificación, mantenimiento de redes y adecuaciones de estaciones y viviendas.
-          </p>
-
-          <div className="dml-grid-2">
-            <div className="dml-card">
-              <div className="dml-card__row">
-                <span className="dml-bullet" />
-                <h3 className="dml-h3">Gases del Oriente</h3>
-              </div>
-              <p className="dml-muted">
-                Gasificación de Cúcuta y área metropolitana; reparaciones y mantenimiento de redes de distribución.
-              </p>
-            </div>
-            <div className="dml-card">
-              <div className="dml-card__row">
-                <span className="dml-bullet" />
-                <h3 className="dml-h3">Rednova</h3>
-              </div>
-              <p className="dml-muted">
-                Obras en Santander y Boyacá; adecuaciones de estaciones, montajes de ERM y puesta en servicio de viviendas.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Nosotros */}
-      <section id="nosotros" className="dml-section dml-section--white">
-        <div className="dml-container">
-          <h2 className="dml-h2">Nosotros</h2>
-          <p className="dml-muted">
-            Conoce más sobre DIMELCO S.A.S. y nuestro compromiso con la excelencia.
-          </p>
-        </div>
-      </section>
-
-      {/* Cotizar */}
-      <section id="cotizar" className="dml-section">
-        <div className="dml-container">
-          <h2 className="dml-h2">Cotizar</h2>
-          <p className="dml-muted">
-            Solicita una cotización personalizada para tu proyecto.
-          </p>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contacto" className="dml-section dml-section--contact">
-        <div className="dml-container dml-contact">
-          <div>
-            <h2 className="dml-h2">Contacto</h2>
-            <p className="dml-muted">
-              Cuéntanos qué necesitas. Respondemos con una propuesta clara.
-            </p>
-
-            <div className="dml-card dml-card--soft dml-contact__box">
-              <div className="dml-strong">DIMELCO S.A.S.</div>
-              <div className="dml-contact__lines">
-                <div><span className="dml-label">Dirección:</span> Calle 2N # 1E-07, Quinta Bosch, Cúcuta</div>
-                <div><span className="dml-label">Email:</span> <a className="dml-link" href="mailto:dimelco@hotmail.com">dimelco@hotmail.com</a></div>
-                <div><span className="dml-label">Tel:</span> <a className="dml-link" href="tel:+573017239148">+57 301 723 9148</a> / <a className="dml-link" href="tel:+573002541830">+57 300 254 1830</a></div>
-              </div>
-            </div>
-
-            <div className="dml-actions">
-              <a
-                className="dml-btn dml-btn--yellow"
-                href="mailto:dimelco@hotmail.com?subject=Contacto%20DIMELCO%20S.A.S.&body=Hola%20DIMELCO%2C%0A%0A%0A%0AGracias."
-              >
-                Enviar correo
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <a className="bg-[#559A32] hover:brightness-110 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg" href="#services">
+                Explorar Servicios
               </a>
-              <a className="dml-btn dml-btn--primary" href="tel:+573017239148">Llamar</a>
+              <a className="bg-slate-800/80 hover:bg-slate-800 text-white border border-white/50 px-8 py-4 rounded-lg font-bold text-lg transition-all" href="#projects">
+                Ver Proyectos
+              </a>
             </div>
           </div>
+        </section>
 
-          <aside className="dml-card dml-card--padded">
-            <div className="dml-strong">¿Qué podemos cotizar?</div>
-            <ul className="dml-list">
-              <li>Redes GN y GLP (construcción, reparación, mantenimiento)</li>
-              <li>Obras civiles para estaciones y adecuaciones</li>
-              <li>Montajes electromecánicos e industriales</li>
-              <li>Inspección y mantenimiento de tanques</li>
-              <li>Climatización y energía solar</li>
-            </ul>
-
-            <div className="dml-callout dml-callout--green">
-              <div className="dml-callout__title">Respuesta rápida</div>
-              <div className="dml-callout__text">
-                Técnicos certificados y disponibilidad operativa.
+        {/* About Us Section */}
+        <section className="py-20 bg-slate-100" id="about">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-[#559A32] font-bold tracking-widest uppercase text-sm mb-4">QUIÉNES SOMOS</h2>
+                <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Experiencia Impulsada por la Innovación</h3>
+                <p className="text-slate-600 mb-4 leading-relaxed">
+                  Dimelco S.A.S. es una firma de ingeniería de primer nivel con sede en Cúcuta, Norte de Santander, comprometida con la excelencia en cada proyecto que realizamos. Con años de experiencia en ingeniería eléctrica, civil y consultoría técnica, ofrecemos soluciones innovadoras para las necesidades de infraestructura en evolución de nuestra región.
+                </p>
+                <p className="text-slate-600 mb-8 leading-relaxed">
+                  Nuestro equipo se dedica a entregar proyectos que priorizan la seguridad, la eficiencia y la sostenibilidad. Combinamos experiencia técnica con un profundo entendimiento de los requisitos locales para transformar ideas en realidad.
+                </p>
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#559A32]/20 flex items-center justify-center text-[#559A32]">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 mb-1">Calidad Certificada</h4>
+                    <p className="text-slate-600">Cumpliendo estrictas normas de seguridad y regulación.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-xl bg-[#559A32] p-8 min-h-[400px] flex flex-col justify-end">
+                <div className="flex-1 flex items-center justify-center mb-6">
+                  <img
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80"
+                    alt="Colaboración del equipo de ingeniería"
+                    className="rounded-lg object-cover max-h-64 w-full"
+                  />
+                </div>
+                <p className="text-white font-bold tracking-widest uppercase text-center text-sm">EQUIPO DE INGENIERÍA NINUMAL</p>
               </div>
             </div>
-          </aside>
-        </div>
+          </div>
+        </section>
 
-        <div className="dml-footer">
-          <div className="dml-container dml-footer__inner">
-            <div>© {new Date().getFullYear()} DIMELCO S.A.S. — Cúcuta, Norte de Santander</div>
-            <div className="dml-footer__meta">
-              <span><strong>NIT:</strong> 807.000.946-1</span>
-              <span className="dml-sep" />
-              <span><strong>Email:</strong> dimelco@hotmail.com</span>
+        {/* Services Section */}
+        <section className="py-20 bg-slate-50" id="services">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-[#559A32] font-bold tracking-widest uppercase text-sm mb-4">NUESTROS SERVICIOS</h2>
+              <h3 className="text-3xl md:text-4xl font-bold text-slate-900">Soluciones Técnicas para el Progreso</h3>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <ServiceCard
+                title="Ingeniería Eléctrica"
+                desc="Diseño e instalación integral de sistemas eléctricos de media y baja tensión para proyectos industriales, comerciales y residenciales."
+                icon={
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                }
+              />
+              <ServiceCard
+                title="Infraestructura Civil"
+                desc="Ejecución de obras civiles, planificación urbana, refuerzos estructurales y desarrollo de proyectos de infraestructura sostenible."
+                icon={
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                }
+              />
+              <ServiceCard
+                title="Consultoría Técnica"
+                desc="Asesoría experta en viabilidad de proyectos, cumplimiento normativo (RETIE) y optimización de soluciones de ingeniería."
+                icon={
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                }
+              />
             </div>
           </div>
+        </section>
+
+        {/* Projects Section */}
+        <section className="py-20 bg-slate-100" id="projects">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+              <div>
+                <h2 className="text-[#559A32] font-bold tracking-widest uppercase text-sm mb-2">PROYECTOS DESTACADOS</h2>
+                <h3 className="text-3xl md:text-4xl font-bold text-slate-900">Transformando el Paisaje de Cúcuta</h3>
+              </div>
+              <a href="#projects" className="text-[#559A32] font-semibold hover:underline flex items-center gap-1">
+                Ver Todos los Proyectos <span>→</span>
+              </a>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <ProjectCard
+                image="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=600&q=80"
+                category="ELÉCTRICO"
+                title="Subestación Industrial Alpha"
+              />
+              <ProjectCard
+                image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
+                category="OBRAS CIVILES"
+                title="Complejo Comercial Norte"
+              />
+              <ProjectCard
+                image="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80"
+                category="INNOVACIÓN"
+                title="Iniciativa de Red Inteligente Municipal"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-[#559A32] text-white py-16" id="contact">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div className="lg:col-span-1">
+              <img src={logo} alt="Dimelco" className="h-12 w-auto mb-4 opacity-95" />
+              <p className="text-white/90 text-sm mb-4 leading-relaxed">
+                Servicios de ingeniería profesional para un mundo en desarrollo. Especializados en infraestructura de alto rendimiento y sistemas eléctricos.
+              </p>
+              <p className="text-white/80 text-xs">
+                © 2023 Dimelco S.A.S. Todos los derechos reservados. Excelencia en Ingeniería desde el inicio.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-4">Enlaces Rápidos</h4>
+              <ul className="space-y-2 text-white/90">
+                <li><a href="#about" className="hover:text-white transition-colors">Nosotros</a></li>
+                <li><a href="#services" className="hover:text-white transition-colors">Nuestros Servicios</a></li>
+                <li><a href="#projects" className="hover:text-white transition-colors">Portafolio de Proyectos</a></li>
+                <li><a href="#contact" className="hover:text-white transition-colors">Carreras</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-4">Contacto</h4>
+              <ul className="space-y-3 text-white/90 text-sm">
+                <li className="flex items-start gap-2">
+                  <span className="opacity-90 mt-0.5">📍</span>
+                  Cl. 2 Nte. #1e175, Cucuta, Norte de Santander
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="opacity-90">📞</span>
+                  +57 3017239148
+
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="opacity-90">✉</span>
+                  dimelco@hotmail.com
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-4">Mantente Informado</h4>
+              <p className="text-white/90 text-sm mb-4">
+                Suscríbete a nuestro boletín para las últimas noticias de ingeniería.
+              </p>
+              <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                <input
+                  type="email"
+                  placeholder="Correo electrónico"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="flex-1 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-[#559A32]"
+                />
+                <button type="submit" className="bg-[#559A32] text-white px-4 py-2.5 rounded-lg hover:brightness-110 transition-colors">
+                  →
+                </button>
+              </form>
+            </div>
+          </div>
+          <div className="pt-8 border-t border-white/20 flex justify-end gap-6 text-sm text-white/80">
+            <a href="#" className="hover:text-white transition-colors">Política de Privacidad</a>
+            <a href="#" className="hover:text-white transition-colors">Términos de Servicio</a>
+          </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
-}
+};
+
+const ServiceCard = ({ title, desc, icon }) => (
+  <div className="service-card bg-white p-8 rounded-xl shadow-md border border-slate-200">
+    <div className="mb-6 inline-block p-3 bg-[#559A32]/10 rounded-lg text-[#559A32]">
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {icon}
+      </svg>
+    </div>
+    <h4 className="text-xl font-bold text-slate-900 mb-3">{title}</h4>
+    <p className="text-slate-600 text-sm leading-relaxed">{desc}</p>
+  </div>
+);
+
+const ProjectCard = ({ image, category, title }) => (
+  <a href="#projects" className="project-card block relative rounded-xl overflow-hidden aspect-[4/3] group">
+    <img src={image} alt={title} className="w-full h-full object-cover transition-transform group-hover:scale-105" />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+    <div className="absolute bottom-0 left-0 right-0 p-6">
+      <p className="text-[#559A32] font-semibold text-sm tracking-wider mb-1">{category}</p>
+      <h4 className="text-xl font-bold text-white">{title}</h4>
+    </div>
+  </a>
+);
+
+export default MainPage;
