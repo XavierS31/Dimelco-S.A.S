@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import logo from '../assets/DimelcoSASGreen.png';
+import logo from '../assets/DimelcoSASlogo.png';
+import logoGreen from '../assets/DimelcoSASGreenCopy.png';
 import heroBg from '../assets/cucutaBG.jpg';
 import './mainpage.css';
 
@@ -20,16 +21,16 @@ const MainPage = () => {
           <div className="flex justify-between items-center h-20">
             <div className="flex-shrink-0 flex items-center gap-2">
               <img src={logo} alt="Dimelco S.A.S." className="h-12 w-auto object-contain" />
-              <span className="text-xl font-bold text-slate-900 hidden sm:inline">DIMELCO S.A.S</span>
+              <span className="text-xl font-bold text-slate-900 hidden sm:inline"></span>
             </div>
 
             <nav className="hidden md:flex items-center gap-8">
-              <a className="text-black hover:text-[#559A32] font-medium transition-colors" href="#home">Inicio</a>
-              <a className="text-black hover:text-[#559A32] font-medium transition-colors" href="#about">Nosotros</a>
-              <a className="text-black hover:text-[#559A32] font-medium transition-colors" href="#services">Servicios</a>
-              <a className="text-black hover:text-[#559A32] font-medium transition-colors" href="#projects">Proyectos</a>
-              <a className="text-black hover:text-[#559A32] font-medium transition-colors" href="#projects">Carreras</a>
-              <a className="bg-[#559A32] text-white px-5 py-2.5 rounded-lg font-semibold hover:brightness-110 transition-colors" href="#contact">Contáctanos</a>
+              <a className="text-black hover:text-[#46812F] font-medium transition-colors" href="#home">Inicio</a>
+              <a className="text-black hover:text-[#46812F] font-medium transition-colors" href="#about">Nosotros</a>
+              <a className="text-black hover:text-[#46812F] font-medium transition-colors" href="#services">Servicios</a>
+              <a className="text-black hover:text-[#46812F] font-medium transition-colors" href="#projects">Proyectos</a>
+              <a className="text-black hover:text-[#46812F] font-medium transition-colors" href="#projects">Carreras</a>
+              <a className="bg-[#46812F] text-white px-5 py-2.5 rounded-lg font-semibold hover:brightness-110 transition-colors" href="#contact">Contáctanos</a>
             </nav>
 
             <button
@@ -50,6 +51,7 @@ const MainPage = () => {
             <a className="block py-2 text-black" href="#about" onClick={() => setIsMenuOpen(false)}>Nosotros</a>
             <a className="block py-2 text-black" href="#services" onClick={() => setIsMenuOpen(false)}>Servicios</a>
             <a className="block py-2 text-black" href="#projects" onClick={() => setIsMenuOpen(false)}>Proyectos</a>
+            <a className="block py-2 text-black" href="#projects" onClick={() => setIsMenuOpen(false)}>Carreras</a>
             <a className="block py-2 text-[#559A32] font-bold" href="#contact" onClick={() => setIsMenuOpen(false)}>Contáctanos</a>
           </div>
         )}
@@ -71,11 +73,11 @@ const MainPage = () => {
               Brindamos infraestructura y servicios eléctricos de alta calidad para el desarrollo moderno de nuestra región.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a className="bg-[#559A32] hover:brightness-110 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg" href="#services">
-                Explorar Servicios
+              <a className="bg-[#46812F] hover:brightness-110 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg" href="#services">
+                Nuestros Servicios
               </a>
-              <a className="bg-slate-800/80 hover:bg-slate-800 text-white border border-white/50 px-8 py-4 rounded-lg font-bold text-lg transition-all" href="#projects">
-                Ver Proyectos
+              <a className="bg-[#46812F] hover:brightness-110 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg" href="#projects">
+                NuestrosProyectos
               </a>
             </div>
           </div>
@@ -85,8 +87,8 @@ const MainPage = () => {
         <section className="py-20 bg-slate-100" id="about">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-[#559A32] font-bold tracking-widest uppercase text-sm mb-4">QUIÉNES SOMOS</h2>
+              <div> 
+                <h2 className="text-[#46812F] font-bold tracking-widest uppercase text-sm mb-4">QUIÉNES SOMOS</h2>
                 <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Experiencia Impulsada por la Innovación</h3>
                 <p className="text-slate-600 mb-4 leading-relaxed">
                   Dimelco S.A.S. es una firma de ingeniería de primer nivel con sede en Cúcuta, Norte de Santander, comprometida con la excelencia en cada proyecto que realizamos. Con años de experiencia en ingeniería eléctrica, civil y consultoría técnica, ofrecemos soluciones innovadoras para las necesidades de infraestructura en evolución de nuestra región.
@@ -95,7 +97,7 @@ const MainPage = () => {
                   Nuestro equipo se dedica a entregar proyectos que priorizan la seguridad, la eficiencia y la sostenibilidad. Combinamos experiencia técnica con un profundo entendimiento de los requisitos locales para transformar ideas en realidad.
                 </p>
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#559A32]/20 flex items-center justify-center text-[#559A32]">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#46812F]/20 flex items-center justify-center text-[#559A32]">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
@@ -106,7 +108,7 @@ const MainPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="rounded-xl overflow-hidden shadow-xl bg-[#559A32] p-8 min-h-[400px] flex flex-col justify-end">
+              <div className="rounded-xl overflow-hidden shadow-xl bg-[#46812F] p-8 min-h-[400px] flex flex-col justify-end">
                 <div className="flex-1 flex items-center justify-center mb-6">
                   <img
                     src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80"
@@ -114,7 +116,7 @@ const MainPage = () => {
                     className="rounded-lg object-cover max-h-64 w-full"
                   />
                 </div>
-                <p className="text-white font-bold tracking-widest uppercase text-center text-sm">EQUIPO DE INGENIERÍA NINUMAL</p>
+                <p className="text-white font-bold tracking-widest uppercase text-center text-sm">EQUIPO DE INGENIERÍA</p>
               </div>
             </div>
           </div>
@@ -124,7 +126,7 @@ const MainPage = () => {
         <section className="py-20 bg-slate-50" id="services">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-[#559A32] font-bold tracking-widest uppercase text-sm mb-4">NUESTROS SERVICIOS</h2>
+              <h2 className="text-[#46812F] font-bold tracking-widest uppercase text-sm mb-4">NUESTROS SERVICIOS</h2>
               <h3 className="text-3xl md:text-4xl font-bold text-slate-900">Soluciones Técnicas para el Progreso</h3>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
@@ -158,7 +160,7 @@ const MainPage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
               <div>
-                <h2 className="text-[#559A32] font-bold tracking-widest uppercase text-sm mb-2">PROYECTOS DESTACADOS</h2>
+                <h2 className="text-[#46812F] font-bold tracking-widest uppercase text-sm mb-2">PROYECTOS DESTACADOS</h2>
                 <h3 className="text-3xl md:text-4xl font-bold text-slate-900">Transformando el Paisaje de Cúcuta</h3>
               </div>
               <a href="#projects" className="text-[#559A32] font-semibold hover:underline flex items-center gap-1">
@@ -187,11 +189,11 @@ const MainPage = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#559A32] text-white py-16" id="contact">
+      <footer className="bg-[#46812F] text-white py-16" id="contact">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
             <div className="lg:col-span-1">
-              <img src={logo} alt="Dimelco" className="h-12 w-auto mb-4 opacity-95" />
+              <img src={logoGreen} alt="Dimelco" className="h-12 w-auto mb-4 opacity-95" />
               <p className="text-white/90 text-sm mb-4 leading-relaxed">
                 Servicios de ingeniería profesional para un mundo en desarrollo. Especializados en infraestructura de alto rendimiento y sistemas eléctricos.
               </p>

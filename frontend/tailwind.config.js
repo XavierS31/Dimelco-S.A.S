@@ -7,8 +7,8 @@ export default {
     theme: {
       extend: {
         colors: {
-          primary: '#559A32',
-          brandGreen: '#559A32',
+          primary: '#46812F',
+          brandGreen: '#46812F',
           brandDark: '#1a1a1a',
         },
         borderRadius: {
