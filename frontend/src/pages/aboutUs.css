@@ -1,0 +1,30 @@
+@reference "../index.css";
+
+:root {
+  scroll-behavior: smooth;
+}
+
+/* Clases de utilidad escalables */
+.section-padding {
+  @apply py-16 md:py-24;
+}
+
+.transition-base {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* Animación personalizada para que los elementos aparezcan al cargar */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease-out forwards;
+}

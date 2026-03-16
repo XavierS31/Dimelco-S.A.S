@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us | Dimelco S.A.S.</title>
+<!-- BEGIN: Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- END: Tailwind CDN -->
+<!-- BEGIN: Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#17cf91',
+            secondary: '#0e7d58',
+          },
+          borderRadius: {
+            'custom': '8px',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+<!-- END: Tailwind Configuration -->
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="typography">
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+  </style>
+<style data-purpose="layout-adjustments">
+    .hero-gradient {
+      background: linear-gradient(135deg, #17cf91 0%, #0e7d58 100%);
+    }
+    .section-padding {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="bg-gray-50 text-gray-900">
+<!-- BEGIN: MainHeader -->
+<header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<!-- Logo Section -->
+<div class="flex-shrink-0 flex items-center">
+
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex space-x-8">
+<a class="text-gray-600 hover:text-primary font-medium transition-colors" href="#">Home</a>
+<a class="text-primary font-semibold border-b-2 border-primary" href="#">About Us</a>
+<a class="text-gray-600 hover:text-primary font-medium transition-colors" href="#">Services</a>
+<a class="text-gray-600 hover:text-primary font-medium transition-colors" href="#">Contact</a>
+</nav>
+<!-- CTA Button -->
+<div class="hidden md:block">
+<a class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-custom text-white bg-primary hover:bg-secondary transition-all" href="#">
+            Get a Quote
+          </a>
+</div>
+<!-- Mobile Menu Toggle (Simplified) -->
+<div class="md:hidden">
+<button class="text-gray-500 hover:text-gray-700" type="button">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: HeroSection -->
+<section class="hero-gradient text-white py-24">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
+        Driving Innovation at Dimelco S.A.S.
+      </h1>
+<p class="text-xl md:text-2xl max-w-3xl mx-auto text-green-50 opacity-90">
+        Committed to excellence, reliability, and delivering world-class solutions for our partners across the globe.
+      </p>
+</div>
+</section>
+<!-- END: HeroSection -->
+<main>
+<!-- BEGIN: HistorySection -->
+<section class="section-padding bg-white" id="history">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div data-purpose="history-text">
+<h2 class="text-3xl font-bold text-gray-900 mb-6">Our History</h2>
+<p class="text-gray-600 text-lg mb-4 leading-relaxed">
+              Founded with a vision to redefine industry standards, Dimelco S.A.S. has grown from a local enterprise into a respected leader in our sector. Our journey began over two decades ago, fueled by a passion for technical excellence and a customer-centric approach.
+            </p>
+<p class="text-gray-600 text-lg mb-4 leading-relaxed">
+              Throughout the years, we have reached significant milestones, adapted to technological shifts, and consistently provided high-quality services that empower businesses to thrive in a competitive landscape.
+            </p>
+</div>
+<div class="relative" data-purpose="history-image">
+<img alt="History of Dimelco" class="rounded-custom shadow-xl w-full h-auto object-cover">
+</div>
+</div>
+</div>
+</section>
+<!-- END: HistorySection -->
+<!-- BEGIN: MissionVisionSection -->
+<section class="section-padding bg-gray-50" id="mission-vision">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Mission Card -->
+<div class="bg-white p-10 rounded-custom shadow-sm border border-gray-100" data-purpose="mission-card">
+<div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+<svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+<p class="text-gray-600 leading-relaxed">
+              To provide innovative and sustainable technical solutions that enhance the operational efficiency of our clients. We strive to be the strategic partner of choice through integrity, quality, and a commitment to continuous improvement.
+            </p>
+</div>
+<!-- Vision Card -->
+<div class="bg-white p-10 rounded-custom shadow-sm border border-gray-100" data-purpose="vision-card">
+<div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+<svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+<p class="text-gray-600 leading-relaxed">
+              To be recognized as a global benchmark in our industry, pioneering new technologies and methodologies that shape a more efficient and connected future for businesses worldwide.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: MissionVisionSection -->
+<!-- BEGIN: TeamSection -->
+<section class="section-padding bg-white" id="team">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Meet Our Leadership Team</h2>
+<p class="mt-4 text-xl text-gray-500 max-w-2xl mx-auto">
+            A dedicated group of experts committed to driving excellence and achieving the best results for our clients.
+          </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Team Member 1 -->
+<div class="text-center" data-purpose="team-member">
+<img alt="Executive Officer" class="w-48 h-48 rounded-full mx-auto object-cover mb-4 border-4 border-gray-50 shadow-sm">
+<h4 class="text-xl font-bold text-gray-900">Alejandro Gomez</h4>
+<p class="text-primary font-medium">Chief Executive Officer</p>
+</div>
+<!-- Team Member 2 -->
+<div class="text-center" data-purpose="team-member">
+<img alt="Operations Officer" class="w-48 h-48 rounded-full mx-auto object-cover mb-4 border-4 border-gray-50 shadow-sm">
+<p class="text-primary font-medium">Chief Operations Officer</p>
+</div>
+<!-- Team Member 3 -->
+<div class="text-center" data-purpose="team-member">
+<img alt="Technology Officer" class="w-48 h-48 rounded-full mx-auto object-cover mb-4 border-4 border-gray-50 shadow-sm">
+<p class="text-primary font-medium">Chief Technology Officer</p>
+</div>
+<!-- Team Member 4 -->
+<div class="text-center" data-purpose="team-member">
+<img alt="Finance Officer" class="w-48 h-48 rounded-full mx-auto object-cover mb-4 border-4 border-gray-50 shadow-sm">
+<h4 class="text-xl font-bold text-gray-900">Diana Santos</h4>
+<p class="text-primary font-medium">Chief Financial Officer</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: TeamSection -->
+</main>
+<!-- BEGIN: Footer -->
+<footer class="bg-gray-900 text-white py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<!-- Brand Info -->
+<div class="col-span-1 md:col-span-1">
+
+<p class="text-gray-400 text-sm leading-relaxed">
+            Dimelco S.A.S. is a leader in providing comprehensive industrial and commercial solutions. Excellence in every project, trust in every partnership.
+          </p>
+</div>
+<!-- Quick Links -->
+<div>
+<h5 class="text-lg font-bold mb-4">Quick Links</h5>
+<ul class="space-y-2 text-gray-400 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Home</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Services</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Portfolio</a></li>
+</ul>
+</div>
+<!-- Legal -->
+<div>
+<h5 class="text-lg font-bold mb-4">Legal</h5>
+<ul class="space-y-2 text-gray-400 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Cookie Policy</a></li>
+</ul>
+</div>
+<!-- Contact -->
+<div>
+<h5 class="text-lg font-bold mb-4">Connect With Us</h5>
+<div class="flex space-x-4">
+<a class="text-gray-400 hover:text-primary" href="#">
+<span class="sr-only">LinkedIn</span>
+<svg class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
+</a>
+<a class="text-gray-400 hover:text-primary" href="#">
+<span class="sr-only">Twitter</span>
+<svg class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"> 
+</svg>
+</a> </svg>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+<p>© 2023 Dimelco S.A.S. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+</body></html>

@@ -4,7 +4,7 @@ import cors from "cors";
 import { auth } from "express-oauth2-jwt-bearer";
 
 const app = express();
-const PORT = Number(process.env.PORT) || 5000;
+const PORT = Number(process.env.PORT);
 
 const checkJwt = auth({
   audience: process.env.AUTH0_AUDIENCE,

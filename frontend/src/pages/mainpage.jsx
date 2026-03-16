@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/DimelcoSASlogo.png';
 import logoGreen from '../assets/DimelcoSASGreenCopy.png';
 import heroBg from '../assets/cucutaBG.jpg';
+import phoneIcon from '../assets/phone.png';
+import mailIcon from '../assets/mail.png';
+import locationIcon from '../assets/location.png';
 import './mainpage.css';
 
 const MainPage = () => {
@@ -15,6 +19,37 @@ const MainPage = () => {
 
   return (
     <div className="min-h-screen w-full bg-slate-50 text-slate-900 font-sans scroll-smooth">
+      {/* Top bar */}
+      <div className="bg-slate-100 text-[#46812F] text-[10px]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
+          <a
+            href="https://www.linkedin.com/company/dimelco-sas/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity ml-3"
+            aria-label="LinkedIn de Dimelco S.A.S"
+          >
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
+            <a href="https://maps.google.com/?q=Cl.+2+Nte.+%231e07+Cucuta" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+              <img src={locationIcon} alt="" className="w-4 h-4 object-contain topbar-icon" />
+              <span className="hidden sm:inline">Cúcuta, Colombia</span>
+            </a>
+            <a href="tel:+573017239148" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+              <img src={phoneIcon} alt="" className="w-4 h-4 object-contain topbar-icon" />
+              <span>+57 301 723 9148</span>
+            </a>
+            <a href="mailto:dimelco@hotmail.com" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+              <img src={mailIcon} alt="" className="w-4 h-4 object-contain topbar-icon" />
+              <span className="hidden sm:inline">dimelco@hotmail.com</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,11 +61,11 @@ const MainPage = () => {
 
             <nav className="hidden md:flex items-center gap-8">
               <a className="text-black hover:text-[#46812F] font-medium transition-colors" href="#home">Inicio</a>
-              <a className="text-black hover:text-[#46812F] font-medium transition-colors" href="#about">Nosotros</a>
+              <Link className="text-black hover:text-[#46812F] font-medium transition-colors" to="/nosotros">Nosotros</Link>
               <a className="text-black hover:text-[#46812F] font-medium transition-colors" href="#services">Servicios</a>
               <a className="text-black hover:text-[#46812F] font-medium transition-colors" href="#projects">Proyectos</a>
               <a className="text-black hover:text-[#46812F] font-medium transition-colors" href="#projects">Carreras</a>
-              <a className="bg-[#46812F] text-white px-5 py-2.5 rounded-lg font-semibold hover:brightness-110 transition-colors" href="#contact">Contáctanos</a>
+              <a className="btn-green bg-[#46812F] text-white [&:active]:!text-black px-5 py-2.5 rounded-lg font-semibold hover:brightness-110 transition-colors" href="#contact">Contáctanos</a>
             </nav>
 
             <button
@@ -48,7 +83,7 @@ const MainPage = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t border-slate-100 px-4 py-4 space-y-3">
             <a className="block py-2 text-black" href="#home" onClick={() => setIsMenuOpen(false)}>Inicio</a>
-            <a className="block py-2 text-black" href="#about" onClick={() => setIsMenuOpen(false)}>Nosotros</a>
+            <Link className="block py-2 text-black" to="/nosotros" onClick={() => setIsMenuOpen(false)}>Nosotros</Link>
             <a className="block py-2 text-black" href="#services" onClick={() => setIsMenuOpen(false)}>Servicios</a>
             <a className="block py-2 text-black" href="#projects" onClick={() => setIsMenuOpen(false)}>Proyectos</a>
             <a className="block py-2 text-black" href="#projects" onClick={() => setIsMenuOpen(false)}>Carreras</a>
@@ -73,10 +108,10 @@ const MainPage = () => {
               Brindamos infraestructura y servicios eléctricos de alta calidad para el desarrollo moderno de nuestra región.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a className="bg-[#46812F] hover:brightness-110 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg" href="#services">
+              <a className="btn-green bg-[#46812F] hover:brightness-110 text-white [&:active]:!text-black px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg" href="#services">
                 Nuestros Servicios
               </a>
-              <a className="bg-[#46812F] hover:brightness-110 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg" href="#projects">
+              <a className="btn-green bg-[#46812F] hover:brightness-110 text-white [&:active]:!text-black px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg" href="#projects">
                 NuestrosProyectos
               </a>
             </div>
@@ -198,7 +233,7 @@ const MainPage = () => {
                 Servicios de ingeniería profesional para un mundo en desarrollo. Especializados en infraestructura de alto rendimiento y sistemas eléctricos.
               </p>
               <p className="text-white/80 text-xs">
-                © 2023 Dimelco S.A.S. Todos los derechos reservados. Excelencia en Ingeniería desde el inicio.
+                © 2026 Dimelco S.A.S. Todos los derechos reservados. Excelencia en Ingeniería desde el inicio.
               </p>
             </div>
             <div>
@@ -214,16 +249,22 @@ const MainPage = () => {
               <h4 className="font-bold text-white mb-4">Contacto</h4>
               <ul className="space-y-3 text-white/90 text-sm">
                 <li className="flex items-start gap-2">
-                  <span className="opacity-90 mt-0.5">📍</span>
-                  Cl. 2 Nte. #1e175, Cucuta, Norte de Santander
+                  <img src={locationIcon} alt="" className="w-5 h-5 object-contain flex-shrink-0 mt-0.5 footer-icon" />
+                  Cl. 2 Nte. #1e175 <br />
+                  Cucuta,Norte de Santander
+                  
+                  
+            
                 </li>
+              
+                
+                
                 <li className="flex items-center gap-2">
-                  <span className="opacity-90">📞</span>
+                  <img src={phoneIcon} alt="" className="w-5 h-5 object-contain footer-icon" />
                   +57 3017239148
-
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="opacity-90">✉</span>
+                  <img src={mailIcon} alt="" className="w-5 h-5 object-contain footer-icon" />
                   dimelco@hotmail.com
                 </li>
               </ul>
@@ -241,7 +282,7 @@ const MainPage = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   className="flex-1 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-[#559A32]"
                 />
-                <button type="submit" className="bg-[#559A32] text-white px-4 py-2.5 rounded-lg hover:brightness-110 transition-colors">
+                <button type="submit" className="btn-green bg-[#559A32] text-white [&:active]:!text-black px-4 py-2.5 rounded-lg hover:brightness-110 transition-colors">
                   →
                 </button>
               </form>
