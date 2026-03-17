@@ -5,4 +5,9 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  server: {
+    fs: {
+      cachedChecks: true, // Speeds up resolve on Windows / OneDrive
+    },
+  },
 })

@@ -1,0 +1,14 @@
+@reference "../index.css";
+
+:root {
+  scroll-behavior: smooth;
+}
+
+.section-padding {
+  @apply py-16 md:py-24;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}

@@ -1,0 +1,20 @@
+@reference "../index.css";
+
+:root {
+  scroll-behavior: smooth;
+}
+
+.section-padding {
+  @apply py-16 md:py-24;
+}
+
+.grid-masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.project-card:hover .project-img {
+  transform: scale(1.05);
+  transition: transform 0.5s ease;
+}
