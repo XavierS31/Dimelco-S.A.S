@@ -60,7 +60,7 @@ const MainPage = () => {
             </div>
 
             <nav className="hidden md:flex items-center gap-8">
-              <a className="text-black hover:text-[#46812F] font-medium transition-colors" href="#home">Inicio</a>
+              <a className="text-[#46812F] font-medium border-b-2 border-[#46812F] pb-0.5 hover:opacity-80 transition-opacity" href="#home">Inicio</a>
               <Link className="text-black hover:text-[#46812F] font-medium transition-colors" to="/nosotros">Nosotros</Link>
               <a className="text-black hover:text-[#46812F] font-medium transition-colors" href="#services">Servicios</a>
               <a className="text-black hover:text-[#46812F] font-medium transition-colors" href="#projects">Proyectos</a>
@@ -82,7 +82,7 @@ const MainPage = () => {
 
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t border-slate-100 px-4 py-4 space-y-3">
-            <a className="block py-2 text-black" href="#home" onClick={() => setIsMenuOpen(false)}>Inicio</a>
+            <a className="block py-2 text-[#46812F] font-semibold hover:opacity-80 transition-opacity" href="#home" onClick={() => setIsMenuOpen(false)}>Inicio</a>
             <Link className="block py-2 text-black" to="/nosotros" onClick={() => setIsMenuOpen(false)}>Nosotros</Link>
             <a className="block py-2 text-black" href="#services" onClick={() => setIsMenuOpen(false)}>Servicios</a>
             <a className="block py-2 text-black" href="#projects" onClick={() => setIsMenuOpen(false)}>Proyectos</a>
