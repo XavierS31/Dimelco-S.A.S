@@ -100,9 +100,8 @@ const MainPage = () => {
             <div className="absolute inset-0 hero-overlay" />
           </div>
           <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-white">
               Lideres en Soluciones de Ingeniería.
-            
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-10 max-w-2xl mx-auto">
               Brindamos infraestructura y servicios eléctricos de alta calidad para el desarrollo moderno de nuestra región.
@@ -247,45 +246,33 @@ const MainPage = () => {
             </div>
             <div>
               <h4 className="font-bold text-white mb-4">Contacto</h4>
-              <ul className="space-y-3 text-white/90 text-sm">
-                <li className="flex items-start gap-2">
+<ul className="space-y-3 text-white/90 text-sm">
+              <li className="flex items-start gap-2">
                   <img src={locationIcon} alt="" className="w-5 h-5 object-contain flex-shrink-0 mt-0.5 footer-icon" />
-                  Cl. 2 Nte. #1e175 <br />
-                  Cucuta,Norte de Santander
-                  
-                  
-            
+                  <a href="https://maps.google.com/?q=Cl.+2+Nte.+%231e07+Cucuta" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                    Cl. 2 Nte. #1e175 <br />
+                    Cucuta, Norte de Santander
+                  </a>
                 </li>
-              
-                
-                
                 <li className="flex items-center gap-2">
                   <img src={phoneIcon} alt="" className="w-5 h-5 object-contain footer-icon" />
-                  +57 3017239148
+                  <a href="tel:+573017239148" className="hover:text-white transition-colors">+57 3017239148</a>
                 </li>
                 <li className="flex items-center gap-2">
                   <img src={mailIcon} alt="" className="w-5 h-5 object-contain footer-icon" />
-                  dimelco@hotmail.com
+                  <a href="mailto:dimelco@hotmail.com" className="hover:text-white transition-colors">dimelco@hotmail.com</a>
                 </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-white mb-4">Mantente Informado</h4>
+              <h4 className="font-bold text-white mb-4">Conéctate con nosotros</h4>
               <p className="text-white/90 text-sm mb-4">
-                Suscríbete a nuestro boletín para las últimas noticias de ingeniería.
+                Síguenos en nuestras redes para estar actualizado con todas nuestras novedades.
               </p>
-              <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Correo electrónico"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-[#559A32]"
-                />
-                <button type="submit" className="btn-green bg-[#559A32] text-white [&:active]:!text-black px-4 py-2.5 rounded-lg hover:brightness-110 transition-colors">
-                  →
-                </button>
-              </form>
+              <a href="https://www.linkedin.com/company/dimelco-sas/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white/90 hover:text-white transition-colors" aria-label="LinkedIn dimelco-sas">
+                <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                <span>dimelco-sas</span>
+              </a>
             </div>
           </div>
           <div className="pt-8 border-t border-white/20 flex justify-end gap-6 text-sm text-white/80">

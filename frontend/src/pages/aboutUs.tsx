@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoGreen from '../assets/DimelcoSASGreenCopy.png';
+import dimelcoHQ from '../assets/dimelcoHQ.png';
 import phoneIcon from '../assets/phone.png';
 import mailIcon from '../assets/mail.png';
 import locationIcon from '../assets/location.png';
@@ -99,8 +100,12 @@ const AboutPage: React.FC = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="text-white py-24" style={{ background: 'linear-gradient(135deg, #46812F 0%, #366324 100%)' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section
+          className="relative text-white min-h-[70vh] py-32 bg-cover bg-center bg-no-repeat flex items-center"
+          style={{ backgroundImage: `url(${dimelcoHQ})` }}
+        >
+          <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
               Impulsando la innovación en Dimelco S.A.S.
             </h1>
@@ -178,43 +183,62 @@ const AboutPage: React.FC = () => {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      {/* Footer - same as mainpage, Conéctate con nosotros instead of Mantente Informado */}
+      <footer className="bg-[#46812F] text-white py-16" id="contact">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Dimelco S.A.S. es líder en soluciones industriales y comerciales integrales. Excelencia en cada proyecto, confianza en cada alianza.
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div className="lg:col-span-1">
+              <img src={logoGreen} alt="Dimelco" className="h-12 w-auto mb-4 opacity-95" />
+              <p className="text-white/90 text-sm mb-4 leading-relaxed">
+                Servicios de ingeniería profesional para un mundo en desarrollo. Especializados en infraestructura de alto rendimiento y sistemas eléctricos.
+              </p>
+              <p className="text-white/80 text-xs">
+                © 2026 Dimelco S.A.S. Todos los derechos reservados. Excelencia en Ingeniería desde el inicio.
               </p>
             </div>
             <div>
-              <h5 className="text-lg font-bold mb-4">Enlaces rápidos</h5>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><Link to="/" className="text-gray-400 hover:text-[#46812F] transition-colors">Inicio</Link></li>
-                <li><span>Nosotros</span></li>
-                <li><a href="/#services" className="text-gray-400 hover:text-[#46812F] transition-colors">Servicios</a></li>
-                <li><a href="/#projects" className="text-gray-400 hover:text-[#46812F] transition-colors">Portafolio</a></li>
+              <h4 className="font-bold text-white mb-4">Enlaces Rápidos</h4>
+              <ul className="space-y-2 text-white/90">
+                <li><Link to="/nosotros" className="hover:text-white transition-colors">Nosotros</Link></li>
+                <li><a href="/#services" className="hover:text-white transition-colors">Nuestros Servicios</a></li>
+                <li><a href="/#projects" className="hover:text-white transition-colors">Portafolio de Proyectos</a></li>
+                <li><a href="/#contact" className="hover:text-white transition-colors">Carreras</a></li>
               </ul>
             </div>
             <div>
-              <h5 className="text-lg font-bold mb-4">Legal</h5>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="text-gray-400 hover:text-[#46812F] transition-colors">Política de privacidad</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-[#46812F] transition-colors">Términos de servicio</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-[#46812F] transition-colors">Política de cookies</a></li>
+              <h4 className="font-bold text-white mb-4">Contacto</h4>
+              <ul className="space-y-3 text-white/90 text-sm">
+                <li className="flex items-start gap-2">
+                  <img src={locationIcon} alt="" className="w-5 h-5 object-contain flex-shrink-0 mt-0.5" style={{ filter: 'brightness(0) invert(1)' }} />
+                  <a href="https://maps.google.com/?q=Cl.+2+Nte.+%231e07+Cucuta" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                    Cl. 2 Nte. #1e175 <br />
+                    Cucuta, Norte de Santander
+                  </a>
+                </li>
+                <li className="flex items-center gap-2">
+                  <img src={phoneIcon} alt="" className="w-5 h-5 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+                  <a href="tel:+573017239148" className="hover:text-white transition-colors">+57 3017239148</a>
+                </li>
+                <li className="flex items-center gap-2">
+                  <img src={mailIcon} alt="" className="w-5 h-5 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+                  <a href="mailto:dimelco@hotmail.com" className="hover:text-white transition-colors">dimelco@hotmail.com</a>
+                </li>
               </ul>
             </div>
             <div>
-              <h5 className="text-lg font-bold mb-4">Conéctate con nosotros</h5>
-              <div className="flex space-x-4">
-                <a href="https://www.linkedin.com/company/dimelco-sas/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#46812F] transition-colors" aria-label="LinkedIn">
-                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                </a>
-              </div>
+              <h4 className="font-bold text-white mb-4">Conéctate con nosotros</h4>
+              <p className="text-white/90 text-sm mb-4">
+                Síguenos en nuestras redes para estar actualizado con todas nuestras novedades.
+              </p>
+              <a href="https://www.linkedin.com/company/dimelco-sas/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white/90 hover:text-white transition-colors" aria-label="LinkedIn dimelco-sas">
+                <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                <span>dimelco-sas</span>
+              </a>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-            <p>© 2023 Dimelco S.A.S. Todos los derechos reservados.</p>
+          <div className="pt-8 border-t border-white/20 flex justify-end gap-6 text-sm text-white/80">
+            <a href="#" className="hover:text-white transition-colors">Política de Privacidad</a>
+            <a href="#" className="hover:text-white transition-colors">Términos de Servicio</a>
           </div>
         </div>
       </footer>
