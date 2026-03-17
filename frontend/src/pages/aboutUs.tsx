@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoGreen from '../assets/DimelcoSASGreenCopy.png';
 import dimelcoHQ from '../assets/dimelcoHQ.png';
+import dimelcoWhiteNoBg from '../assets/dimelcoWhiteNoBG.png';
 import phoneIcon from '../assets/phone.png';
 import mailIcon from '../assets/mail.png';
 import locationIcon from '../assets/location.png';
@@ -44,7 +45,7 @@ const AboutPage: React.FC = () => {
             </a>
             <a href="tel:+573017239148" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
               <img src={phoneIcon} alt="" className="w-4 h-4 object-contain" />
-              <span>+57 301 723 9148</span>
+              <span>+57 301-723-9148</span>
             </a>
             <a href="mailto:dimelco@hotmail.com" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
               <img src={mailIcon} alt="" className="w-4 h-4 object-contain" />
@@ -68,12 +69,12 @@ const AboutPage: React.FC = () => {
               <span className="font-semibold border-b-2 border-white py-2 text-white hover:opacity-80 transition-opacity cursor-default">
                 Nosotros
               </span>
-              <a href="/#services" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Servicios</a>
-              <a href="/#projects" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Proyectos</a>
-              <a href="/#projects" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Carreras</a>
-              <a href="/#contact" className="bg-white text-[#46812F] px-5 py-2.5 rounded-lg font-semibold hover:brightness-95 transition-colors">
+              <Link to="/servicios" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Servicios</Link>
+              <Link to="/proyectos" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Proyectos</Link>
+              <Link to="/carreras" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Carreras</Link>
+              <Link to="/nosotros" className="bg-white text-[#46812F] px-5 py-2.5 rounded-lg font-semibold hover:brightness-95 transition-colors">
                 Contáctanos
-              </a>
+              </Link>
             </nav>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -90,10 +91,10 @@ const AboutPage: React.FC = () => {
           <div className="md:hidden border-t border-white/30 px-4 py-4 space-y-3" style={{ backgroundColor: '#46812F' }}>
             <Link to="/" className="block py-2 hover:underline" style={{ color: 'white' }} onClick={() => setIsMenuOpen(false)}>Inicio</Link>
             <span className="block py-2 font-semibold text-white hover:opacity-80 transition-opacity">Nosotros</span>
-            <a href="/#services" className="block py-2 hover:underline" style={{ color: 'white' }} onClick={() => setIsMenuOpen(false)}>Servicios</a>
-            <a href="/#projects" className="block py-2 hover:underline" style={{ color: 'white' }} onClick={() => setIsMenuOpen(false)}>Proyectos</a>
-            <a href="/#projects" className="block py-2 hover:underline" style={{ color: 'white' }} onClick={() => setIsMenuOpen(false)}>Carreras</a>
-            <a href="/#contact" className="block py-2 text-white font-bold hover:underline" onClick={() => setIsMenuOpen(false)}>Contáctanos</a>
+            <Link to="/servicios" className="block py-2 hover:underline" style={{ color: 'white' }} onClick={() => setIsMenuOpen(false)}>Servicios</Link>
+            <Link to="/proyectos" className="block py-2 hover:underline" style={{ color: 'white' }} onClick={() => setIsMenuOpen(false)}>Proyectos</Link>
+            <Link to="/carreras" className="block py-2 hover:underline" style={{ color: 'white' }} onClick={() => setIsMenuOpen(false)}>Carreras</Link>
+            <Link to="/nosotros" className="block py-2 text-white font-bold hover:underline" onClick={() => setIsMenuOpen(false)}>Contáctanos</Link>
           </div>
         )}
       </header>
@@ -106,8 +107,8 @@ const AboutPage: React.FC = () => {
         >
           <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
-              Impulsando la innovación en Dimelco S.A.S.
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-white flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+              Impulsando la innovación en <img src={dimelcoWhiteNoBg} alt="Dimelco S.A.S." className="h-10 md:h-14 w-auto object-contain inline-block" />
             </h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto opacity-90" style={{ color: 'rgba(255,255,255,0.9)' }}>
               Comprometidos con la excelencia, la confiabilidad y la entrega de soluciones de clase mundial para nuestros socios en todo el mundo.
@@ -199,10 +200,11 @@ const AboutPage: React.FC = () => {
             <div>
               <h4 className="font-bold text-white mb-4">Enlaces Rápidos</h4>
               <ul className="space-y-2 text-white/90">
+                <li><Link to="/" className="hover:text-white transition-colors">Inicio</Link></li>
                 <li><Link to="/nosotros" className="hover:text-white transition-colors">Nosotros</Link></li>
-                <li><a href="/#services" className="hover:text-white transition-colors">Nuestros Servicios</a></li>
-                <li><a href="/#projects" className="hover:text-white transition-colors">Portafolio de Proyectos</a></li>
-                <li><a href="/#contact" className="hover:text-white transition-colors">Carreras</a></li>
+                <li><Link to="/servicios" className="hover:text-white transition-colors">Nuestros Servicios</Link></li>
+                <li><Link to="/proyectos" className="hover:text-white transition-colors">Portafolio de Proyectos</Link></li>
+                <li><Link to="/carreras" className="hover:text-white transition-colors">Carreras</Link></li>
               </ul>
             </div>
             <div>
@@ -217,7 +219,7 @@ const AboutPage: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <img src={phoneIcon} alt="" className="w-5 h-5 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
-                  <a href="tel:+573017239148" className="hover:text-white transition-colors">+57 3017239148</a>
+                  <a href="tel:+573017239148" className="hover:text-white transition-colors">+57 301-723-9148</a>
                 </li>
                 <li className="flex items-center gap-2">
                   <img src={mailIcon} alt="" className="w-5 h-5 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />

@@ -51,7 +51,7 @@ const ServicesPage: React.FC = () => {
             </a>
             <a href="tel:+573017239148" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
               <img src={phoneIcon} alt="" className="w-4 h-4 object-contain" />
-              <span>+57 301 723 9148</span>
+              <span>+57 301-723-9148</span>
             </a>
             <a href="mailto:dimelco@hotmail.com" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
               <img src={mailIcon} alt="" className="w-4 h-4 object-contain" />
@@ -74,7 +74,7 @@ const ServicesPage: React.FC = () => {
               <span className="font-semibold border-b-2 border-white py-2 text-white cursor-default">Servicios</span>
               <Link to="/proyectos" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Proyectos</Link>
               <Link to="/carreras" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Carreras</Link>
-              <a href="/#contact" className="bg-white text-[#46812F] px-5 py-2.5 rounded-lg font-semibold hover:brightness-95 transition-colors">Contáctanos</a>
+              <Link to="/nosotros" className="bg-white text-[#46812F] px-5 py-2.5 rounded-lg font-semibold hover:brightness-95 transition-colors">Contáctanos</Link>
             </nav>
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 text-white" aria-label="Menú">
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,7 +90,7 @@ const ServicesPage: React.FC = () => {
             <span className="block py-2 font-semibold text-white">Servicios</span>
             <Link to="/proyectos" className="block py-2 text-white hover:underline" onClick={() => setIsMenuOpen(false)}>Proyectos</Link>
             <Link to="/carreras" className="block py-2 text-white hover:underline" onClick={() => setIsMenuOpen(false)}>Carreras</Link>
-            <a href="/#contact" className="block py-2 text-white font-bold hover:underline" onClick={() => setIsMenuOpen(false)}>Contáctanos</a>
+            <Link to="/nosotros" className="block py-2 text-white font-bold hover:underline" onClick={() => setIsMenuOpen(false)}>Contáctanos</Link>
           </div>
         )}
       </header>
@@ -131,7 +131,7 @@ const ServicesPage: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                  <a href="/#contact" className="mt-auto text-[#46812F] font-semibold hover:underline">Más información →</a>
+                  <Link to="/nosotros" className="mt-auto text-[#46812F] font-semibold hover:underline">Más información →</Link>
                 </article>
               ))}
             </div>
@@ -174,8 +174,9 @@ const ServicesPage: React.FC = () => {
             <div>
               <h4 className="font-bold text-white mb-4">Enlaces Rápidos</h4>
               <ul className="space-y-2 text-white/90">
+                <li><Link to="/" className="hover:text-white transition-colors">Inicio</Link></li>
                 <li><Link to="/nosotros" className="hover:text-white transition-colors">Nosotros</Link></li>
-                <li><span className="text-white/90">Nuestros Servicios</span></li>
+                <li><Link to="/servicios" className="hover:text-white transition-colors">Nuestros Servicios</Link></li>
                 <li><Link to="/proyectos" className="hover:text-white transition-colors">Portafolio de Proyectos</Link></li>
                 <li><Link to="/carreras" className="hover:text-white transition-colors">Carreras</Link></li>
               </ul>
@@ -189,7 +190,7 @@ const ServicesPage: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <img src={phoneIcon} alt="" className="w-5 h-5 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
-                  <a href="tel:+573017239148" className="hover:text-white transition-colors">+57 3017239148</a>
+                  <a href="tel:+573017239148" className="hover:text-white transition-colors">+57 301-723-9148</a>
                 </li>
                 <li className="flex items-center gap-2">
                   <img src={mailIcon} alt="" className="w-5 h-5 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />

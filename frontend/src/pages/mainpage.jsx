@@ -40,7 +40,7 @@ const MainPage = () => {
             </a>
             <a href="tel:+573017239148" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
               <img src={phoneIcon} alt="" className="w-4 h-4 object-contain topbar-icon" />
-              <span>+57 301 723 9148</span>
+              <span>+57 301-723-9148</span>
             </a>
             <a href="mailto:dimelco@hotmail.com" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
               <img src={mailIcon} alt="" className="w-4 h-4 object-contain topbar-icon" />
@@ -107,12 +107,12 @@ const MainPage = () => {
               Brindamos infraestructura y servicios eléctricos de alta calidad para el desarrollo moderno de nuestra región.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a className="btn-green bg-[#46812F] hover:brightness-110 text-white [&:active]:!text-black px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg" href="#services">
+              <Link className="btn-green bg-[#46812F] hover:brightness-110 text-white [&:active]:!text-black px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg" to="/servicios">
                 Nuestros Servicios
-              </a>
-              <a className="btn-green bg-[#46812F] hover:brightness-110 text-white [&:active]:!text-black px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg" href="#projects">
-                NuestrosProyectos
-              </a>
+              </Link>
+              <Link className="btn-green bg-[#46812F] hover:brightness-110 text-white [&:active]:!text-black px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg" to="/proyectos">
+                Nuestros Proyectos
+              </Link>
             </div>
           </div>
         </section>
@@ -197,9 +197,9 @@ const MainPage = () => {
                 <h2 className="text-[#46812F] font-bold tracking-widest uppercase text-sm mb-2">PROYECTOS DESTACADOS</h2>
                 <h3 className="text-3xl md:text-4xl font-bold text-slate-900">Transformando el Paisaje de Cúcuta</h3>
               </div>
-              <a href="#projects" className="text-[#559A32] font-semibold hover:underline flex items-center gap-1">
+              <Link to="/proyectos" className="text-[#559A32] font-semibold hover:underline flex items-center gap-1">
                 Ver Todos los Proyectos <span>→</span>
-              </a>
+              </Link>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               <ProjectCard
@@ -238,10 +238,11 @@ const MainPage = () => {
             <div>
               <h4 className="font-bold text-white mb-4">Enlaces Rápidos</h4>
               <ul className="space-y-2 text-white/90">
-                <li><a href="#about" className="hover:text-white transition-colors">Nosotros</a></li>
-                <li><a href="#services" className="hover:text-white transition-colors">Nuestros Servicios</a></li>
-                <li><a href="#projects" className="hover:text-white transition-colors">Portafolio de Proyectos</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Carreras</a></li>
+                <li><Link to="/" className="hover:text-white transition-colors">Inicio</Link></li>
+                <li><Link to="/nosotros" className="hover:text-white transition-colors">Nosotros</Link></li>
+                <li><Link to="/servicios" className="hover:text-white transition-colors">Nuestros Servicios</Link></li>
+                <li><Link to="/proyectos" className="hover:text-white transition-colors">Portafolio de Proyectos</Link></li>
+                <li><Link to="/carreras" className="hover:text-white transition-colors">Carreras</Link></li>
               </ul>
             </div>
             <div>
@@ -256,7 +257,7 @@ const MainPage = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <img src={phoneIcon} alt="" className="w-5 h-5 object-contain footer-icon" />
-                  <a href="tel:+573017239148" className="hover:text-white transition-colors">+57 3017239148</a>
+                  <a href="tel:+573017239148" className="hover:text-white transition-colors">+57 301-723-9148</a>
                 </li>
                 <li className="flex items-center gap-2">
                   <img src={mailIcon} alt="" className="w-5 h-5 object-contain footer-icon" />
@@ -298,14 +299,14 @@ const ServiceCard = ({ title, desc, icon }) => (
 );
 
 const ProjectCard = ({ image, category, title }) => (
-  <a href="#projects" className="project-card block relative rounded-xl overflow-hidden aspect-[4/3] group">
+  <Link to="/proyectos" className="project-card block relative rounded-xl overflow-hidden aspect-[4/3] group">
     <img src={image} alt={title} className="w-full h-full object-cover transition-transform group-hover:scale-105" />
     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
     <div className="absolute bottom-0 left-0 right-0 p-6">
       <p className="text-[#559A32] font-semibold text-sm tracking-wider mb-1">{category}</p>
       <h4 className="text-xl font-bold text-white">{title}</h4>
     </div>
-  </a>
+  </Link>
 );
 
 export default MainPage;

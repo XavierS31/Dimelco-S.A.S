@@ -34,7 +34,7 @@ const ProjectsPage: React.FC = () => {
             </a>
             <a href="tel:+573017239148" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
               <img src={phoneIcon} alt="" className="w-4 h-4 object-contain" />
-              <span>+57 301 723 9148</span>
+              <span>+57 301-723-9148</span>
             </a>
             <a href="mailto:dimelco@hotmail.com" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
               <img src={mailIcon} alt="" className="w-4 h-4 object-contain" />
@@ -54,10 +54,10 @@ const ProjectsPage: React.FC = () => {
             <nav className="hidden md:flex items-center gap-8">
               <Link to="/" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Inicio</Link>
               <Link to="/nosotros" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Nosotros</Link>
-              <a href="/#services" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Servicios</a>
+              <Link to="/servicios" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Servicios</Link>
               <span className="font-semibold border-b-2 border-white py-2 text-white cursor-default">Proyectos</span>
               <Link to="/carreras" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Carreras</Link>
-              <a href="/#contact" className="bg-white text-[#46812F] px-5 py-2.5 rounded-lg font-semibold hover:brightness-95 transition-colors">Contáctanos</a>
+              <Link to="/nosotros" className="bg-white text-[#46812F] px-5 py-2.5 rounded-lg font-semibold hover:brightness-95 transition-colors">Contáctanos</Link>
             </nav>
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 text-white" aria-label="Menú">
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,10 +70,10 @@ const ProjectsPage: React.FC = () => {
           <div className="md:hidden border-t border-white/30 px-4 py-4 space-y-3" style={{ backgroundColor: '#46812F' }}>
             <Link to="/" className="block py-2 text-white hover:underline" onClick={() => setIsMenuOpen(false)}>Inicio</Link>
             <Link to="/nosotros" className="block py-2 text-white hover:underline" onClick={() => setIsMenuOpen(false)}>Nosotros</Link>
-            <a href="/#services" className="block py-2 text-white hover:underline" onClick={() => setIsMenuOpen(false)}>Servicios</a>
+            <Link to="/servicios" className="block py-2 text-white hover:underline" onClick={() => setIsMenuOpen(false)}>Servicios</Link>
             <span className="block py-2 font-semibold text-white">Proyectos</span>
-            <a href="/#projects" className="block py-2 text-white hover:underline" onClick={() => setIsMenuOpen(false)}>Carreras</a>
-            <a href="/#contact" className="block py-2 text-white font-bold hover:underline" onClick={() => setIsMenuOpen(false)}>Contáctanos</a>
+            <Link to="/carreras" className="block py-2 text-white hover:underline" onClick={() => setIsMenuOpen(false)}>Carreras</Link>
+            <Link to="/nosotros" className="block py-2 text-white font-bold hover:underline" onClick={() => setIsMenuOpen(false)}>Contáctanos</Link>
           </div>
         )}
       </header>
@@ -113,10 +113,10 @@ const ProjectsPage: React.FC = () => {
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-gray-900">{p.title}</h3>
                   <p className="text-gray-600 text-sm mb-4">{p.description}</p>
-                  <a href="/#projects" className="text-[#46812F] font-semibold text-sm flex items-center gap-1 hover:underline">
+                  <Link to="/proyectos" className="text-[#46812F] font-semibold text-sm flex items-center gap-1 hover:underline">
                     Ver detalles
                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}
@@ -137,8 +137,8 @@ const ProjectsPage: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">¿Listo para iniciar tu próximo proyecto?</h2>
             <p className="text-gray-400 mb-10 max-w-xl mx-auto">Nuestro equipo de ingenieros está listo para ayudarte a optimizar tus operaciones con soluciones técnicas confiables e innovadoras.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/#contact" className="bg-[#46812F] text-white px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-all">Solicitar propuesta</a>
-              <a href="/#contact" className="bg-transparent border border-gray-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition-all">Consultar expertos</a>
+              <Link to="/nosotros" className="bg-[#46812F] text-white px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-all">Solicitar propuesta</Link>
+              <Link to="/nosotros" className="bg-transparent border border-gray-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition-all">Consultar expertos</Link>
             </div>
           </div>
         </section>
@@ -156,6 +156,7 @@ const ProjectsPage: React.FC = () => {
             <div>
               <h4 className="font-bold text-white mb-4">Enlaces Rápidos</h4>
               <ul className="space-y-2 text-white/90">
+                <li><Link to="/" className="hover:text-white transition-colors">Inicio</Link></li>
                 <li><Link to="/nosotros" className="hover:text-white transition-colors">Nosotros</Link></li>
                 <li><Link to="/servicios" className="hover:text-white transition-colors">Nuestros Servicios</Link></li>
                 <li><Link to="/proyectos" className="hover:text-white transition-colors">Portafolio de Proyectos</Link></li>
@@ -171,7 +172,7 @@ const ProjectsPage: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <img src={phoneIcon} alt="" className="w-5 h-5 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
-                  <a href="tel:+573017239148" className="hover:text-white transition-colors">+57 3017239148</a>
+                  <a href="tel:+573017239148" className="hover:text-white transition-colors">+57 301-723-9148</a>
                 </li>
                 <li className="flex items-center gap-2">
                   <img src={mailIcon} alt="" className="w-5 h-5 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
