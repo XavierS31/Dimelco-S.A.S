@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/DimelcoSASlogo.png';
 import logoGreen from '../assets/DimelcoSASGreenCopy.png';
 import heroBg from '../assets/cucutaBG.jpg';
+import serviciosBg from '../assets/cucutaBG2.jpg';
+import engineer2 from '../assets/engineer2.jpg';
+import gasesOriente from '../clients/gasesOriente.png';
+import rednova from '../clients/rednova.png';
 import phoneIcon from '../assets/phone.png';
 import mailIcon from '../assets/mail.png';
 import locationIcon from '../assets/location.png';
@@ -65,7 +69,7 @@ const MainPage = () => {
               <Link className="text-black hover:text-[#46812F] font-medium transition-colors" to="/servicios">Servicios</Link>
               <Link className="text-black hover:text-[#46812F] font-medium transition-colors" to="/proyectos">Proyectos</Link>
               <Link className="text-black hover:text-[#46812F] font-medium transition-colors" to="/carreras">Carreras</Link>
-              <Link className="btn-green bg-[#46812F] text-white [&:active]:!text-black px-5 py-2.5 rounded-lg font-semibold hover:brightness-110 transition-colors" to="/nosotros">Contáctanos</Link>
+              <Link className="btn-green bg-[#46812F] text-white [&:active]:!text-black px-5 py-2.5 rounded-lg font-semibold hover:brightness-110 transition-colors" to="/contacto">Contáctanos</Link>
             </nav>
 
             <button
@@ -87,7 +91,7 @@ const MainPage = () => {
             <Link className="block py-2 text-black" to="/servicios" onClick={() => setIsMenuOpen(false)}>Servicios</Link>
             <Link className="block py-2 text-black" to="/proyectos" onClick={() => setIsMenuOpen(false)}>Proyectos</Link>
             <Link className="block py-2 text-black" to="/carreras" onClick={() => setIsMenuOpen(false)}>Carreras</Link>
-            <Link className="block py-2 text-[#559A32] font-bold" to="/nosotros" onClick={() => setIsMenuOpen(false)}>Contáctanos</Link>
+            <Link className="block py-2 text-[#559A32] font-bold" to="/contacto" onClick={() => setIsMenuOpen(false)}>Contáctanos</Link>
           </div>
         )}
       </header>
@@ -100,10 +104,10 @@ const MainPage = () => {
             <div className="absolute inset-0 hero-overlay" />
           </div>
           <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-white">
+          <h1 className="hero-title text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-white">
               Lideres en Soluciones de Ingeniería.
             </h1>
-            <p className="text-lg md:text-xl text-slate-200 mb-10 max-w-2xl mx-auto">
+            <p className="hero-subtitle text-lg md:text-xl text-white mb-10 max-w-2xl mx-auto">
               Brindamos infraestructura y servicios eléctricos de alta calidad para el desarrollo moderno de nuestra región.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -118,10 +122,10 @@ const MainPage = () => {
         </section>
 
         {/* About Us Section */}
-        <section className="py-20 bg-slate-100" id="about">
+        <section className="py-20 bg-white" id="about">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div> 
+            <div className="grid md:grid-cols-2 gap-12 items-stretch">
+              <div>
                 <h2 className="text-[#46812F] font-bold tracking-widest uppercase text-sm mb-4">QUIÉNES SOMOS</h2>
                 <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Experiencia Impulsada por la Innovación</h3>
                 <p className="text-slate-600 mb-4 leading-relaxed">
@@ -130,38 +134,46 @@ const MainPage = () => {
                 <p className="text-slate-600 mb-8 leading-relaxed">
                   Nuestro equipo se dedica a entregar proyectos que priorizan la seguridad, la eficiencia y la sostenibilidad. Combinamos experiencia técnica con un profundo entendimiento de los requisitos locales para transformar ideas en realidad.
                 </p>
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#46812F]/20 flex items-center justify-center text-[#559A32]">
+                <div className="bg-[#46812F] rounded-2xl p-5 shadow-md flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 mb-1">Calidad Certificada</h4>
-                    <p className="text-slate-600">Cumpliendo estrictas normas de seguridad y regulación.</p>
+                    <h4 className="font-bold text-white mb-1">Calidad Certificada</h4>
+                    <p className="text-white/90 text-sm">Cumpliendo estrictas normas de seguridad y regulación.</p>
                   </div>
                 </div>
               </div>
-              <div className="rounded-xl overflow-hidden shadow-xl bg-[#46812F] p-8 min-h-[400px] flex flex-col justify-end">
-                <div className="flex-1 flex items-center justify-center mb-6">
-                  <img
-                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80"
-                    alt="Colaboración del equipo de ingeniería"
-                    className="rounded-lg object-cover max-h-64 w-full"
-                  />
+              <div className="rounded-2xl overflow-hidden shadow-xl bg-[#46812F] p-6 min-h-full flex flex-col justify-between">
+                <div className="flex-1 flex items-center justify-center mb-5">
+                  <div className="w-full rounded-xl overflow-hidden">
+                    <img
+                      src={engineer2}
+                      alt="Colaboración del equipo de ingeniería"
+                      className="rounded-xl object-cover w-full aspect-[4/3] max-h-90"
+                    />
+                  </div>
                 </div>
-                <p className="text-white font-bold tracking-widest uppercase text-center text-sm">EQUIPO DE INGENIERÍA</p>
+                <p className="text-white font-bold text-center text-xl mt-1">Equipo de ingeniería</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Services Section */}
-        <section className="py-20 bg-slate-50" id="services">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative py-20 overflow-hidden" id="services">
+          <div className="absolute inset-0 z-0">
+            <img src={serviciosBg} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-[#46812F]/75" aria-hidden="true" />
+          </div>
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-[#46812F] font-bold tracking-widest uppercase text-sm mb-4">NUESTROS SERVICIOS</h2>
-              <h3 className="text-3xl md:text-4xl font-bold text-slate-900">Soluciones Técnicas para el Progreso</h3>
+              <div className="inline-block bg-white rounded-2xl px-8 py-4 md:px-12 md:py-5 shadow-lg">
+                <h2 className="text-[#46812F] font-bold tracking-widest uppercase text-sm mb-2">NUESTROS SERVICIOS</h2>
+                <h3 className="text-3xl md:text-4xl font-bold text-slate-900">Soluciones Técnicas para el Progreso</h3>
+              </div>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               <ServiceCard
@@ -185,6 +197,34 @@ const MainPage = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 }
               />
+            </div>
+          </div>
+        </section>
+
+        {/* Nuestros clientes */}
+        <section className="py-5 md:py-6 bg-slate-200/80 border-t border-slate-300">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-center font-extrabold text-2xl md:text-4xl mb-0.5" style={{ color: '#46812F' }}>Nuestros clientes</h2>
+            <p className="text-center text-slate-800 mb-4 md:mb-5 text-xl">Empresas que confían en nosotros con sus proyectos de Ingenieria</p>
+            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+              <a
+                href="https://www.rednova.com.co/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1"
+                aria-label="Rednova - Sitio web"
+              >
+                <img src={rednova} alt="Rednova" className="h-28 md:h-36 w-auto object-contain max-w-[280px]" />
+              </a>
+              <a
+                href="https://www.gasesdeloriente.com.co/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1"
+                aria-label="Gases del Oriente - Sitio web"
+              >
+                <img src={gasesOriente} alt="Gases del Oriente" className="h-28 md:h-36 w-auto object-contain max-w-[280px]" />
+              </a>
             </div>
           </div>
         </section>

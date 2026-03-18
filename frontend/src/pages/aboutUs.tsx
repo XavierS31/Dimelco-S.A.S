@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoGreen from '../assets/DimelcoSASGreenCopy.png';
-import dimelcoHQ from '../assets/dimelcoHQ.png';
+import dimelcoHQ from '../assets/cucutaBGPuente.jpg';
 import dimelcoWhiteNoBg from '../assets/dimelcoWhiteNoBG.png';
 import phoneIcon from '../assets/phone.png';
 import mailIcon from '../assets/mail.png';
@@ -72,7 +72,7 @@ const AboutPage: React.FC = () => {
               <Link to="/servicios" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Servicios</Link>
               <Link to="/proyectos" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Proyectos</Link>
               <Link to="/carreras" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Carreras</Link>
-              <Link to="/nosotros" className="bg-white text-[#46812F] px-5 py-2.5 rounded-lg font-semibold hover:brightness-95 transition-colors">
+              <Link to="/contacto" className="bg-white text-[#46812F] px-5 py-2.5 rounded-lg font-semibold hover:brightness-95 transition-colors">
                 Contáctanos
               </Link>
             </nav>
@@ -94,7 +94,7 @@ const AboutPage: React.FC = () => {
             <Link to="/servicios" className="block py-2 hover:underline" style={{ color: 'white' }} onClick={() => setIsMenuOpen(false)}>Servicios</Link>
             <Link to="/proyectos" className="block py-2 hover:underline" style={{ color: 'white' }} onClick={() => setIsMenuOpen(false)}>Proyectos</Link>
             <Link to="/carreras" className="block py-2 hover:underline" style={{ color: 'white' }} onClick={() => setIsMenuOpen(false)}>Carreras</Link>
-            <Link to="/nosotros" className="block py-2 text-white font-bold hover:underline" onClick={() => setIsMenuOpen(false)}>Contáctanos</Link>
+            <Link to="/contacto" className="block py-2 text-white font-bold hover:underline" onClick={() => setIsMenuOpen(false)}>Contáctanos</Link>
           </div>
         )}
       </header>

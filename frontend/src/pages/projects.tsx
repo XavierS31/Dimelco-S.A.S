@@ -57,7 +57,7 @@ const ProjectsPage: React.FC = () => {
               <Link to="/servicios" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Servicios</Link>
               <span className="font-semibold border-b-2 border-white py-2 text-white cursor-default">Proyectos</span>
               <Link to="/carreras" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Carreras</Link>
-              <Link to="/nosotros" className="bg-white text-[#46812F] px-5 py-2.5 rounded-lg font-semibold hover:brightness-95 transition-colors">Contáctanos</Link>
+              <Link to="/contacto" className="bg-white text-[#46812F] px-5 py-2.5 rounded-lg font-semibold hover:brightness-95 transition-colors">Contáctanos</Link>
             </nav>
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 text-white" aria-label="Menú">
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -73,7 +73,7 @@ const ProjectsPage: React.FC = () => {
             <Link to="/servicios" className="block py-2 text-white hover:underline" onClick={() => setIsMenuOpen(false)}>Servicios</Link>
             <span className="block py-2 font-semibold text-white">Proyectos</span>
             <Link to="/carreras" className="block py-2 text-white hover:underline" onClick={() => setIsMenuOpen(false)}>Carreras</Link>
-            <Link to="/nosotros" className="block py-2 text-white font-bold hover:underline" onClick={() => setIsMenuOpen(false)}>Contáctanos</Link>
+            <Link to="/contacto" className="block py-2 text-white font-bold hover:underline" onClick={() => setIsMenuOpen(false)}>Contáctanos</Link>
           </div>
         )}
       </header>

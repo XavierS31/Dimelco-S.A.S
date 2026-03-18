@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoGreen from '../assets/DimelcoSASGreenCopy.png';
+import cucutaBG2 from '../assets/cucutaBG2.jpg';
 import phoneIcon from '../assets/phone.png';
 import mailIcon from '../assets/mail.png';
 import locationIcon from '../assets/location.png';
@@ -37,7 +38,15 @@ const ServicesPage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
+    <div
+        className="min-h-screen text-gray-900 font-sans"
+        style={{
+          backgroundImage: `url(${cucutaBG2})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+        }}
+      >
       {/* Top bar */}
       <div className="text-[10px]" style={{ backgroundColor: '#eef6ec', color: '#46812F' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
@@ -74,7 +83,7 @@ const ServicesPage: React.FC = () => {
               <span className="font-semibold border-b-2 border-white py-2 text-white cursor-default">Servicios</span>
               <Link to="/proyectos" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Proyectos</Link>
               <Link to="/carreras" className="font-medium transition-colors hover:underline hover:underline-offset-4" style={{ color: 'white' }}>Carreras</Link>
-              <Link to="/nosotros" className="bg-white text-[#46812F] px-5 py-2.5 rounded-lg font-semibold hover:brightness-95 transition-colors">Contáctanos</Link>
+              <Link to="/contacto" className="bg-white text-[#46812F] px-5 py-2.5 rounded-lg font-semibold hover:brightness-95 transition-colors">Contáctanos</Link>
             </nav>
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 text-white" aria-label="Menú">
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,17 +99,21 @@ const ServicesPage: React.FC = () => {
             <span className="block py-2 font-semibold text-white">Servicios</span>
             <Link to="/proyectos" className="block py-2 text-white hover:underline" onClick={() => setIsMenuOpen(false)}>Proyectos</Link>
             <Link to="/carreras" className="block py-2 text-white hover:underline" onClick={() => setIsMenuOpen(false)}>Carreras</Link>
-            <Link to="/nosotros" className="block py-2 text-white font-bold hover:underline" onClick={() => setIsMenuOpen(false)}>Contáctanos</Link>
+            <Link to="/contacto" className="block py-2 text-white font-bold hover:underline" onClick={() => setIsMenuOpen(false)}>Contáctanos</Link>
           </div>
         )}
       </header>
 
       <main>
-        <section className="relative py-20 overflow-hidden" style={{ backgroundColor: '#46812F' }}>
+        <section className="relative min-h-[50vh] py-20 overflow-hidden flex items-center">
+          <div className="absolute inset-0 z-0">
+            <img src={cucutaBG2} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/65" aria-hidden="true" />
+          </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6">Excelencia en ingeniería e innovación estratégica</h1>
-              <p className="text-xl text-green-50 mb-10">
+              <p className="text-xl text-white/95 mb-10">
                 Dimelco S.A.S. ofrece servicios integrales de ingeniería en los ámbitos civil, eléctrico y mecánico, respaldados por consultoría técnica especializada.
               </p>
               <a href="#services" className="inline-block bg-white text-[#46812F] hover:bg-gray-100 px-8 py-3 rounded-lg font-bold transition-all">Explorar servicios</a>

@@ -1,0 +1,13 @@
+@reference "../index.css";
+
+:root {
+  scroll-behavior: smooth;
+}
+
+.section-padding {
+  @apply py-16 md:py-24;
+}
+
+.rounded-custom {
+  border-radius: 8px;
+}
