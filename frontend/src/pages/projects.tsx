@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoGreen from '../assets/DimelcoSASGreenCopy.png';
+import gasesOriente from '../clients/gasesOriente.png';
+import rednova from '../clients/rednova.png';
 import phoneIcon from '../assets/phone.png';
 import mailIcon from '../assets/mail.png';
 import locationIcon from '../assets/location.png';
@@ -131,6 +133,22 @@ const ProjectsPage: React.FC = () => {
             </nav>
           </div>
         </div>
+
+        {/* Nuestros clientes */}
+        <section className="py-5 md:py-6 bg-slate-200/80 border-t border-slate-300">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-center font-extrabold text-2xl md:text-4xl mb-0.5" style={{ color: '#46812F' }}>Nuestros clientes</h2>
+            <p className="text-center text-slate-800 mb-4 md:mb-5 text-xl">Empresas que confían en nosotros con sus proyectos de Ingeniería</p>
+            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+              <a href="https://www.rednova.com.co/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1" aria-label="Rednova - Sitio web">
+                <img src={rednova} alt="Rednova" className="h-28 md:h-36 w-auto object-contain max-w-[280px]" />
+              </a>
+              <a href="https://www.gasesdeloriente.com.co/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1" aria-label="Gases del Oriente - Sitio web">
+                <img src={gasesOriente} alt="Gases del Oriente" className="h-28 md:h-36 w-auto object-contain max-w-[280px]" />
+              </a>
+            </div>
+          </div>
+        </section>
 
         <section className="py-20 text-white" style={{ backgroundColor: '#111827' }}>
           <div className="max-w-7xl mx-auto px-4 text-center">

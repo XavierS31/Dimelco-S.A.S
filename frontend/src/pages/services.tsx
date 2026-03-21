@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoGreen from '../assets/DimelcoSASGreenCopy.png';
-import cucutaBG2 from '../assets/cucutaBG2.jpg';
+import gasesOriente from '../clients/gasesOriente.png';
+import rednova from '../clients/rednova.png';
 import phoneIcon from '../assets/phone.png';
 import mailIcon from '../assets/mail.png';
 import locationIcon from '../assets/location.png';
@@ -38,15 +39,7 @@ const ServicesPage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div
-        className="min-h-screen text-gray-900 font-sans"
-        style={{
-          backgroundImage: `url(${cucutaBG2})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      >
+    <div className="min-h-screen bg-slate-50 text-gray-900 font-sans">
       {/* Top bar */}
       <div className="text-[10px]" style={{ backgroundColor: '#eef6ec', color: '#46812F' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
@@ -105,12 +98,8 @@ const ServicesPage: React.FC = () => {
       </header>
 
       <main>
-        <section className="relative min-h-[50vh] py-20 overflow-hidden flex items-center">
-          <div className="absolute inset-0 z-0">
-            <img src={cucutaBG2} alt="" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-black/65" aria-hidden="true" />
-          </div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <section className="py-20 bg-[#46812F]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6">Excelencia en ingeniería e innovación estratégica</h1>
               <p className="text-xl text-white/95 mb-10">
@@ -147,6 +136,22 @@ const ServicesPage: React.FC = () => {
                   <Link to="/nosotros" className="mt-auto text-[#46812F] font-semibold hover:underline">Más información →</Link>
                 </article>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Nuestros clientes */}
+        <section className="py-5 md:py-6 bg-slate-200/80 border-t border-slate-300">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-center font-extrabold text-2xl md:text-4xl mb-0.5" style={{ color: '#46812F' }}>Nuestros clientes</h2>
+            <p className="text-center text-slate-800 mb-4 md:mb-5 text-xl">Empresas que confían en nosotros con sus proyectos de Ingeniería</p>
+            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+              <a href="https://www.rednova.com.co/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1" aria-label="Rednova - Sitio web">
+                <img src={rednova} alt="Rednova" className="h-28 md:h-36 w-auto object-contain max-w-[280px]" />
+              </a>
+              <a href="https://www.gasesdeloriente.com.co/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1" aria-label="Gases del Oriente - Sitio web">
+                <img src={gasesOriente} alt="Gases del Oriente" className="h-28 md:h-36 w-auto object-contain max-w-[280px]" />
+              </a>
             </div>
           </div>
         </section>
