@@ -160,16 +160,16 @@ const ServicesPage: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div>
-                <p className="text-4xl font-bold text-[#46812F] mb-2">15+</p>
+                <p className="text-4xl font-bold text-[#46812F] mb-2">20+</p>
                 <p className="text-gray-400 text-sm uppercase tracking-wider">Años de experiencia</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-[#46812F] mb-2">250+</p>
+                <p className="text-4xl font-bold text-[#46812F] mb-2">15+</p>
                 <p className="text-gray-400 text-sm uppercase tracking-wider">Proyectos completados</p>
               </div>
               <div>
                 <p className="text-4xl font-bold text-[#46812F] mb-2">50+</p>
-                <p className="text-gray-400 text-sm uppercase tracking-wider">Ingenieros</p>
+                <p className="text-gray-400 text-sm uppercase tracking-wider">Empleados</p>
               </div>
               <div>
                 <p className="text-4xl font-bold text-[#46812F] mb-2">100%</p>
@@ -194,8 +194,8 @@ const ServicesPage: React.FC = () => {
               <ul className="space-y-2 text-white/90">
                 <li><Link to="/" className="hover:text-white transition-colors">Inicio</Link></li>
                 <li><Link to="/nosotros" className="hover:text-white transition-colors">Nosotros</Link></li>
-                <li><Link to="/servicios" className="hover:text-white transition-colors">Nuestros Servicios</Link></li>
-                <li><Link to="/proyectos" className="hover:text-white transition-colors">Portafolio de Proyectos</Link></li>
+                <li><Link to="/servicios" className="hover:text-white transition-colors">Servicios</Link></li>
+                <li><Link to="/proyectos" className="hover:text-white transition-colors">Proyectos</Link></li>
                 <li><Link to="/carreras" className="hover:text-white transition-colors">Carreras</Link></li>
               </ul>
             </div>

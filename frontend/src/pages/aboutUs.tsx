@@ -202,8 +202,8 @@ const AboutPage: React.FC = () => {
               <ul className="space-y-2 text-white/90">
                 <li><Link to="/" className="hover:text-white transition-colors">Inicio</Link></li>
                 <li><Link to="/nosotros" className="hover:text-white transition-colors">Nosotros</Link></li>
-                <li><Link to="/servicios" className="hover:text-white transition-colors">Nuestros Servicios</Link></li>
-                <li><Link to="/proyectos" className="hover:text-white transition-colors">Portafolio de Proyectos</Link></li>
+                <li><Link to="/servicios" className="hover:text-white transition-colors">Servicios</Link></li>
+                <li><Link to="/proyectos" className="hover:text-white transition-colors">Proyectos</Link></li>
                 <li><Link to="/carreras" className="hover:text-white transition-colors">Carreras</Link></li>
               </ul>
             </div>

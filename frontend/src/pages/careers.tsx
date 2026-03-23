@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import logoGreen from '../assets/DimelcoSASGreenCopy.png';
 import dimelcoNoBg from '../assets/dimelcoWhiteNoBG.png';
 import bogotaSL from '../assets/bogotaSL.jpg';
+import engineer3 from '../assets/engineer3.jpg';
 import phoneIcon from '../assets/phone.png';
 import mailIcon from '../assets/mail.png';
 import locationIcon from '../assets/location.png';
@@ -201,7 +202,7 @@ const CareersPage: React.FC = () => {
                 </div>
               </div>
               <div className="relative">
-                <img alt="Equipo colaborando" className="rounded-lg shadow-2xl w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADOXzsTki1v46RwzX-6a7H5iUhp9ezXU5bbYJWoy7ARlUi9U1Be5x7CKCLloDFLwLiPGi-SqayDodThVBlMLA5hJU2XOfNZuhVo8hb09mn9nA1d7Pw_iwUbIIrn9hVc7Av0HJgFwwIiQsHtgi4bRyIY7-JWpT1Wk1FwxmH1Bvu_HUHnNtskfaWwViO2q_QpY11bHo9K4OOKnK_C3J3lUTl__K2AbB40ci-rFhuaKm4gUK8o8QPdlUSRzUzBl5Gvc_b1gPJsPnismA" />
+                <img alt="Equipo colaborando" className="rounded-lg shadow-2xl w-full object-cover" src={engineer3} />
                 <div className="absolute -bottom-6 -right-6 w-48 h-48 rounded-lg -z-10" style={{ backgroundColor: 'rgba(70, 129, 47, 0.1)' }} />
               </div>
             </div>
@@ -223,8 +224,8 @@ const CareersPage: React.FC = () => {
               <ul className="space-y-2 text-white/90">
                 <li><Link to="/" className="hover:text-white transition-colors">Inicio</Link></li>
                 <li><Link to="/nosotros" className="hover:text-white transition-colors">Nosotros</Link></li>
-                <li><Link to="/servicios" className="hover:text-white transition-colors">Nuestros Servicios</Link></li>
-                <li><Link to="/proyectos" className="hover:text-white transition-colors">Portafolio de Proyectos</Link></li>
+                <li><Link to="/servicios" className="hover:text-white transition-colors">Servicios</Link></li>
+                <li><Link to="/proyectos" className="hover:text-white transition-colors">Proyectos</Link></li>
                 <li><Link to="/carreras" className="hover:text-white transition-colors">Carreras</Link></li>
               </ul>
             </div>

@@ -18,3 +18,12 @@
   transform: scale(1.05);
   transition: transform 0.5s ease;
 }
+
+/* Hide scrollbars while keeping scroll functional */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, Opera */
+}
