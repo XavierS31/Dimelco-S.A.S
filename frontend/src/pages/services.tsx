@@ -169,7 +169,7 @@ const ServicesPage: React.FC = () => {
               </div>
               <div>
                 <p className="text-4xl font-bold text-[#46812F] mb-2">50+</p>
-                <p className="text-gray-400 text-sm uppercase tracking-wider">Empleados</p>
+                <p className="text-gray-400 text-sm uppercase tracking-wider">Personal Capacitado</p>
               </div>
               <div>
                 <p className="text-4xl font-bold text-[#46812F] mb-2">100%</p>
