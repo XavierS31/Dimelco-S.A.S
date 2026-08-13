@@ -5,6 +5,9 @@ import ProjectsPage from './pages/projects'
 import ServicesPage from './pages/services'
 import CareersPage from './pages/careers'
 import ContactPage from './pages/contacts'
+import LoginPage from './pages/login'
+import DashboardPage from './pages/dashboard'
+import AdminPage from './pages/admin'
 import './App.css'
 
 function App() {
@@ -16,6 +19,9 @@ function App() {
       <Route path="/servicios" element={<ServicesPage />} />
       <Route path="/carreras" element={<CareersPage />} />
       <Route path="/contacto" element={<ContactPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/admin" element={<AdminPage />} />
     </Routes>
   )
 }

@@ -11,7 +11,7 @@ import hvacSolar from '../assets/company/montajeshvacsolar.jpg';
 import personnel from '../assets/company/personal.jpg';
 import rednova from '../clients/rednova.png';
 import gasesOriente from '../clients/gasesOriente.png';
-import chilco from '../assets/company/chilco.png';
+import chilco from '../clients/chilco.png';
 import { trackRecord } from '../data/company';
 
 const projects = [

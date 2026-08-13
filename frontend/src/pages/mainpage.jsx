@@ -7,7 +7,7 @@ import bridge from '../assets/cucutaBGPuente.jpg';
 import city from '../assets/cucutaBG2.jpg';
 import gasesOriente from '../clients/gasesOriente.png';
 import rednova from '../clients/rednova.png';
-import chilco from '../assets/company/chilco.png';
+import chilco from '../clients/chilco.png';
 
 const services = [
   ['01', 'Gas Natural y GLP', 'Diseño, construcción, mantenimiento y atención de redes de distribución, estaciones y activos para gases combustibles.'],
