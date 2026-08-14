@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/DimelcoSASlogo.png';
 import footerLogo from '../assets/dimelcoWhiteNoBG.png';
 import { company } from '../data/company';
+import ChatbotWidget from './ChatbotWidget';
 
 const navigation = [
   ['/', 'Inicio'],
@@ -68,6 +69,7 @@ export default function PageShell({ children }: { children: ReactNode }) {
         </div>
         <div className="container footer-bottom"><span>© 2026 Dimelco S.A.S.</span><div className="footer-bottom__actions"><Link className="footer-login" to="/login">Ingreso de Empleados</Link><a href="https://www.linkedin.com/company/dimelco-sas/" target="_blank" rel="noreferrer">LinkedIn</a></div></div>
       </footer>
+      <ChatbotWidget />
     </div>
   );
 }

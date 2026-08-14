@@ -6,6 +6,7 @@ import { authHandler, hasAuthProvider } from './auth.js';
 import { errorHandler, HttpError, notFound } from './lib/http.js';
 import { authLimiter, generalApiLimiter } from './middleware/rateLimiter.js';
 import { adminRouter } from './routes/admin.js';
+import { chatRouter } from './routes/chat.js';
 import { contactRouter } from './routes/contact.js';
 import { employeeRouter } from './routes/employee.js';
 import { publicJobsRouter } from './routes/publicJobs.js';
@@ -35,6 +36,7 @@ app.get('/health', (_req, res) => {
 
 app.use('/api/auth', authLimiter, authHandler);
 app.use('/api', generalApiLimiter);
+app.use('/api/chat', chatRouter);
 app.use('/api/jobs', publicJobsRouter);
 app.use('/api/contact', contactRouter);
 app.use('/api/employee', employeeRouter);

@@ -57,3 +57,13 @@ export const projectCreateSchema = z.object({
 export const projectUpdateSchema = projectCreateSchema.partial().refine((value) => Object.keys(value).length > 0, {
   message: 'At least one project field is required',
 });
+
+const chatHistoryItemSchema = z.object({
+  role: z.enum(['user', 'model']),
+  text: z.string().trim().min(1).max(900),
+});
+
+export const chatRequestSchema = z.object({
+  message: z.string().trim().min(1).max(900),
+  history: z.array(chatHistoryItemSchema).max(6).default([]),
+});

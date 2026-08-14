@@ -33,3 +33,13 @@ export const contactMessageLimiter = rateLimit({
   legacyHeaders: false,
   message: message('Message limit reached. Please try again later.'),
 });
+
+// Each request can generate an LLM response. This stricter budget protects
+// the Gemini quota even when the general API limit has not been reached.
+export const chatLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 12,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  message: message('Chat limit reached. Please try again in an hour.'),
+});

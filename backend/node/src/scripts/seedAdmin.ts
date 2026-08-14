@@ -11,10 +11,10 @@ const { data, error } = await getSupabase()
   .from('employees')
   .upsert({
     email,
-    full_name: process.env.ADMIN_FULL_NAME?.trim() || 'Platform Administrator',
+    full_name: process.env.ADMIN_FULL_NAME?.trim(),
     role: 'admin',
-    department: process.env.ADMIN_DEPARTMENT?.trim() || 'Management',
-    position: process.env.ADMIN_POSITION?.trim() || 'System Administrator',
+    department: process.env.ADMIN_DEPARTMENT?.trim(),
+    position: process.env.ADMIN_POSITION?.trim(),
     is_active: true,
   }, { onConflict: 'email' })
   .select('id, role, is_active')
