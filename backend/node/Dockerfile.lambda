@@ -12,4 +12,4 @@ WORKDIR ${LAMBDA_TASK_ROOT}
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev && npm cache clean --force
 COPY --from=build ${LAMBDA_TASK_ROOT}/dist ./dist
-CMD ["dist/handler.handler"]
+CMD ["dist/index.handler"]

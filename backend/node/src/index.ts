@@ -1,7 +1,8 @@
 import './env.js';
-import cors from 'cors';
+import cors, { type CorsOptions } from 'cors';
 import express from 'express';
 import helmet from 'helmet';
+import serverless from 'serverless-http';
 import { authHandler, hasAuthProvider } from './auth.js';
 import { errorHandler, HttpError, notFound } from './lib/http.js';
 import { authLimiter, generalApiLimiter } from './middleware/rateLimiter.js';
@@ -12,22 +13,48 @@ import { employeeRouter } from './routes/employee.js';
 import { publicJobsRouter } from './routes/publicJobs.js';
 
 export const app = express();
-const port = Number(process.env.PORT || 4000);
-const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+const port = Number(process.env.PORT);
+const defaultProductionOrigin = 'https://www.dimelcosas.com';
 const isLocalDevelopmentOrigin = (origin: string) => /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
-
-app.set('trust proxy', 1);
-app.use(helmet({ crossOriginResourcePolicy: false }));
-app.use(cors({
+const toOrigin = (value?: string) => {
+  if (!value) return undefined;
+  try {
+    return new URL(value.trim()).origin;
+  } catch {
+    return undefined;
+  }
+};
+const allowedOrigins = new Set(
+  [defaultProductionOrigin, process.env.FRONTEND_URL, ...(process.env.ALLOWED_ORIGINS || '').split(',')]
+    .map(toOrigin)
+    .filter((origin): origin is string => Boolean(origin)),
+);
+const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
-    if (!origin || origin === frontendUrl || (process.env.NODE_ENV !== 'production' && isLocalDevelopmentOrigin(origin))) {
+    const requestOrigin = toOrigin(origin);
+    const isAllowed =
+      !origin ||
+      (requestOrigin !== undefined && allowedOrigins.has(requestOrigin)) ||
+      (process.env.NODE_ENV !== 'production' && isLocalDevelopmentOrigin(origin));
+
+    if (isAllowed) {
       callback(null, true);
       return;
     }
+
     callback(new HttpError(403, 'Origin is not allowed'));
   },
   credentials: true,
-}));
+  methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token'],
+  optionsSuccessStatus: 204,
+};
+
+app.set('trust proxy', 1);
+app.use(helmet({ crossOriginResourcePolicy: false }));
+app.use(cors(corsOptions));
+// Explicitly answer API Gateway/browser CORS preflight requests before routes.
+app.options('*', cors(corsOptions));
 app.use(express.json({ limit: '250kb' }));
 
 app.get('/health', (_req, res) => {
@@ -45,8 +72,11 @@ app.use('/api/admin', adminRouter);
 app.use(notFound);
 app.use(errorHandler);
 
-// Lambda imports this module through handler.ts. Do not open a local TCP listener
-// in that runtime; API Gateway invokes the exported handler instead.
+// API Gateway HTTP API invokes this export in AWS Lambda. The Express app remains
+// usable locally through the listener below.
+export const handler = serverless(app);
+
+// Do not open a local TCP listener in Lambda; API Gateway invokes `handler`.
 if (process.env.NODE_ENV !== 'test' && !process.env.AWS_LAMBDA_FUNCTION_NAME) {
   app.listen(port, () => {
     console.log(`DIMELCO platform API running on http://localhost:${port}`);

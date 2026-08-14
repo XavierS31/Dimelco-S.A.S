@@ -71,7 +71,7 @@ Resources:
     Properties:
       PackageType: Image
       ImageConfig:
-        Command: [dist/handler.handler]
+        Command: [dist/index.handler]
       AutoPublishAlias: live
       DeploymentPreference:
         Type: Canary10Percent5Minutes
