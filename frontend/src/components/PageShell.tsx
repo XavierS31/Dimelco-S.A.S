@@ -66,7 +66,7 @@ export default function PageShell({ children }: { children: ReactNode }) {
             </div>
           </div>
         </div>
-        <div className="container footer-bottom"><span>© 2026 Dimelco S.A.S.</span><a href="https://www.linkedin.com/company/dimelco-sas/" target="_blank" rel="noreferrer">LinkedIn</a></div>
+        <div className="container footer-bottom"><span>© 2026 Dimelco S.A.S.</span><div className="footer-bottom__actions"><Link className="footer-login" to="/login">Ingreso de Empleados</Link><a href="https://www.linkedin.com/company/dimelco-sas/" target="_blank" rel="noreferrer">LinkedIn</a></div></div>
       </footer>
     </div>
   );

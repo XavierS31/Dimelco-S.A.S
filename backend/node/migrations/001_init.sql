@@ -71,6 +71,6 @@ ON CONFLICT (id) DO UPDATE SET
     file_size_limit = EXCLUDED.file_size_limit,
     allowed_mime_types = EXCLUDED.allowed_mime_types;
 
-INSERT INTO public.employees (email, full_name, role, department, position)
-VALUES ('xaviersotoba31@gmail.com', 'Xavier Soto', 'admin', 'Management', 'System Administrator')
-ON CONFLICT (email) DO UPDATE SET role = 'admin';
+-- Provision the initial administrator after deployment with:
+-- npm run seed:admin
+-- The command reads ADMIN_EMAIL and related values from backend/node/.env.

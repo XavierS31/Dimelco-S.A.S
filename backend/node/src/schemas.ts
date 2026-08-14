@@ -34,3 +34,26 @@ export const reportSchema = z.object({
   hours_logged: z.coerce.number().positive().max(99.99),
   report_date: z.string().date().optional(),
 });
+
+export const contactMessageSchema = z.object({
+  full_name: z.string().trim().min(3).max(160),
+  company: z.string().trim().max(160).optional().or(z.literal('')),
+  email: z.string().trim().email().max(254).transform((email) => email.toLowerCase()),
+  subject: z.string().trim().min(3).max(160),
+  message: z.string().trim().min(10).max(5000),
+});
+
+export const contactMessageStatusSchema = z.object({
+  status: z.enum(['new', 'reviewed', 'responded']),
+});
+
+export const projectCreateSchema = z.object({
+  title: z.string().trim().min(3).max(180),
+  location: z.string().trim().min(2).max(180),
+  description: z.string().trim().min(20).max(5000),
+  status: z.enum(['planning', 'active', 'completed']).default('planning'),
+});
+
+export const projectUpdateSchema = projectCreateSchema.partial().refine((value) => Object.keys(value).length > 0, {
+  message: 'At least one project field is required',
+});

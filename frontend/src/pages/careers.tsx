@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageShell from '../components/PageShell';
 import PageHero from '../components/PageHero';
-import ApplicationModal from '../components/ApplicationModal';
 import { api } from '../lib/api';
 import hero from '../assets/bogotaSL.jpg';
 import team from '../assets/engineer3.jpg';
@@ -11,7 +10,6 @@ type Job = { id: string; title: string; department: string; location: string; ty
 
 export default function CareersPage() {
   const [jobs, setJobs] = useState<Job[]>([]);
-  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
   const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading');
 
   useEffect(() => {
@@ -27,9 +25,8 @@ export default function CareersPage() {
       {state === 'loading' && <div className="job-list job-list--loading" aria-label="Cargando vacantes"><span /><span /><span /></div>}
       {state === 'error' && <div className="portal-empty" role="alert"><h3>No fue posible cargar las vacantes.</h3><p>Intente nuevamente en unos minutos o comuníquese con nuestro equipo.</p></div>}
       {state === 'ready' && jobs.length === 0 && <div className="portal-empty"><h3>No hay vacantes publicadas por ahora.</h3><p>Puede volver a consultar esta página o escribirnos para compartir su perfil.</p></div>}
-      {state === 'ready' && jobs.length > 0 && <div className="job-list">{jobs.map((job) => <article className="job" key={job.id}><div><h3>{job.title}</h3><div className="job-meta"><p>{job.location}</p><p>{job.type}</p><p>{job.department}</p></div><p className="job__description">{job.description}</p></div><button className="button button--secondary" type="button" onClick={() => setSelectedJob(job)}>Postularme</button></article>)}</div>}
+      {state === 'ready' && jobs.length > 0 && <div className="job-list">{jobs.map((job) => <article className="job" key={job.id}><div><h3>{job.title}</h3><div className="job-meta"><p>{job.location}</p><p>{job.type}</p><p>{job.department}</p></div></div><Link className="button button--secondary" to={`/carreras/${job.id}`}>Aplicar</Link></article>)}</div>}
     </div></section>
     <section className="section"><div className="container split"><div className="split__image"><img src={team} alt="Equipo de ingeniería colaborando" /></div><div className="split__text"><p className="eyebrow eyebrow--green">Una carrera sostenible</p><h2>Buenas condiciones para hacer buen trabajo.</h2><p>Promovemos un entorno en el que el respeto por las personas va de la mano con el respeto por los procesos, la seguridad y la calidad.</p><Link to="/contacto" className="button button--primary">Hacer una consulta</Link></div></div></section>
-    {selectedJob && <ApplicationModal job={selectedJob} onClose={() => setSelectedJob(null)} />}
   </PageShell>;
 }

@@ -4,6 +4,7 @@ import AboutPage from './pages/aboutUs'
 import ProjectsPage from './pages/projects'
 import ServicesPage from './pages/services'
 import CareersPage from './pages/careers'
+import JobDetailPage from './pages/jobDetail'
 import ContactPage from './pages/contacts'
 import LoginPage from './pages/login'
 import DashboardPage from './pages/dashboard'
@@ -18,6 +19,7 @@ function App() {
       <Route path="/proyectos" element={<ProjectsPage />} />
       <Route path="/servicios" element={<ServicesPage />} />
       <Route path="/carreras" element={<CareersPage />} />
+      <Route path="/carreras/:id" element={<JobDetailPage />} />
       <Route path="/contacto" element={<ContactPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />

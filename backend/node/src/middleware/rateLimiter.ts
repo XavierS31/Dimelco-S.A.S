@@ -12,7 +12,7 @@ export const generalApiLimiter = rateLimit({
 
 export const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  limit: 10,
+  limit: 25,
   standardHeaders: 'draft-8',
   legacyHeaders: false,
   message: message('Too many authentication attempts. Please try again later.'),
@@ -24,4 +24,12 @@ export const applicationLimiter = rateLimit({
   standardHeaders: 'draft-8',
   legacyHeaders: false,
   message: message('Application limit reached. Please try again later.'),
+});
+
+export const contactMessageLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 10,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  message: message('Message limit reached. Please try again later.'),
 });

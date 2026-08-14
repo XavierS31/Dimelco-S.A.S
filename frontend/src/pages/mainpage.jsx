@@ -6,7 +6,8 @@ import cucutaBg from '../assets/cucutaBG.jpg';
 import bridge from '../assets/cucutaBGPuente.jpg';
 import city from '../assets/cucutaBG2.jpg';
 import gasesOriente from '../clients/gasesOriente.png';
-import rednova from '../clients/rednova.png';
+import rednova from '../clients/rednova.png'; 
+
 import chilco from '../clients/chilco.png';
 
 const services = [

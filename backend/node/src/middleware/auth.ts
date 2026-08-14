@@ -65,8 +65,9 @@ export const requireEmployee = async (req: Request, _res: Response, next: NextFu
 
 export const requireAdmin = (req: Request, _res: Response, next: NextFunction) => {
   const employee = (req as AuthenticatedRequest).employee;
-  const isSeedAdmin = employee?.email === 'xaviersotoba31@gmail.com';
-  if (!employee || (!isSeedAdmin && employee.role !== 'admin')) {
+  const configuredAdminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+  const isConfiguredAdmin = Boolean(configuredAdminEmail && employee?.email === configuredAdminEmail);
+  if (!employee || (!isConfiguredAdmin && employee.role !== 'admin')) {
     return next(new HttpError(403, 'Administrator access is required'));
   }
   return next();

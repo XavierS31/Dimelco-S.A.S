@@ -1,5 +1,6 @@
 import { ExpressAuth, type ExpressAuthConfig } from '@auth/express';
 import Google from '@auth/express/providers/google';
+import './env.js';
 
 const hasGoogleCredentials = Boolean(process.env.AUTH_GOOGLE_ID && process.env.AUTH_GOOGLE_SECRET);
 
