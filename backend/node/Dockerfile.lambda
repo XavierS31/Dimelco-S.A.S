@@ -1,0 +1,15 @@
+# This image is built and pushed to ECR by AWS SAM during the backend deployment.
+FROM public.ecr.aws/lambda/nodejs:22 AS build
+WORKDIR ${LAMBDA_TASK_ROOT}
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY tsconfig.json ./
+COPY src ./src
+RUN npm run typecheck && npm run build
+
+FROM public.ecr.aws/lambda/nodejs:22
+WORKDIR ${LAMBDA_TASK_ROOT}
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev && npm cache clean --force
+COPY --from=build ${LAMBDA_TASK_ROOT}/dist ./dist
+CMD ["dist/handler.handler"]

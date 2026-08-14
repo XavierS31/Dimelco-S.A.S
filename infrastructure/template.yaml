@@ -1,0 +1,118 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: DIMELCO API Gateway HTTP API and container-image Lambda API.
+
+Parameters:
+  Environment:
+    Type: String
+    Default: production
+    AllowedValues: [development, staging, production]
+  FrontendUrl:
+    Type: String
+    Description: Canonical Amplify URL or custom domain, without a trailing slash.
+  ApplicationSecretsArn:
+    Type: String
+    NoEcho: true
+    Description: ARN of the Secrets Manager JSON secret that holds all server-only API settings.
+
+Globals:
+  Function:
+    Timeout: 29
+    MemorySize: 1024
+    Tracing: Active
+    Environment:
+      Variables:
+        NODE_ENV: production
+        FRONTEND_URL: !Ref FrontendUrl
+        SUPABASE_URL: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:SUPABASE_URL}}'
+        SUPABASE_SECRET_KEY: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:SUPABASE_SECRET_KEY}}'
+        AUTH_SECRET: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:AUTH_SECRET}}'
+        AUTH_GOOGLE_ID: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:AUTH_GOOGLE_ID}}'
+        AUTH_GOOGLE_SECRET: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:AUTH_GOOGLE_SECRET}}'
+        ADMIN_EMAIL: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:ADMIN_EMAIL}}'
+        ADMIN_FULL_NAME: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:ADMIN_FULL_NAME}}'
+        ADMIN_DEPARTMENT: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:ADMIN_DEPARTMENT}}'
+        ADMIN_POSITION: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:ADMIN_POSITION}}'
+        GEMINI_API_KEY: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:GEMINI_API_KEY}}'
+        GEMINI_MODEL: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:GEMINI_MODEL}}'
+
+Resources:
+  ApiAccessLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 30
+
+  ApiFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/${ApiFunction}'
+      RetentionInDays: 30
+
+  DimelcoHttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: '$default'
+      CorsConfiguration:
+        AllowCredentials: true
+        AllowHeaders: [Content-Type, Authorization, X-CSRF-Token]
+        AllowMethods: [GET, POST, PUT, PATCH, DELETE, OPTIONS]
+        AllowOrigins: [!Ref FrontendUrl]
+        MaxAge: 600
+      AccessLogSettings:
+        DestinationArn: !GetAtt ApiAccessLogGroup.Arn
+        Format: '{"requestId":"$context.requestId","ip":"$context.identity.sourceIp","requestTime":"$context.requestTime","httpMethod":"$context.httpMethod","routeKey":"$context.routeKey","status":"$context.status","protocol":"$context.protocol","responseLength":"$context.responseLength","integrationError":"$context.integrationErrorMessage"}'
+      DefaultRouteSettings:
+        DetailedMetricsEnabled: true
+        ThrottlingBurstLimit: 100
+        ThrottlingRateLimit: 50
+
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      ImageConfig:
+        Command: [dist/handler.handler]
+      AutoPublishAlias: live
+      DeploymentPreference:
+        Type: Canary10Percent5Minutes
+        Alarms: [!Ref ApiFunctionErrorAlarm]
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AWSXRayDaemonWriteAccess
+      Events:
+        ProxyApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref DimelcoHttpApi
+            Path: /{proxy+}
+            Method: ANY
+    Metadata:
+      DockerContext: ../backend/node
+      Dockerfile: Dockerfile.lambda
+      DockerTag: dimelco-api
+
+  ApiFunctionErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Roll back a Lambda canary when the API starts failing.
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Statistic: Sum
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref ApiFunction
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway base URL. Set this exact value as VITE_API_URL in Amplify.
+    Value: !Sub 'https://${DimelcoHttpApi}.execute-api.${AWS::Region}.amazonaws.com'
+  ApiHealthUrl:
+    Description: Health endpoint used by the deployment workflow.
+    Value: !Sub 'https://${DimelcoHttpApi}.execute-api.${AWS::Region}.amazonaws.com/health'
+  ApiFunctionName:
+    Value: !Ref ApiFunction

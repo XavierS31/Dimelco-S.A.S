@@ -1,0 +1,27 @@
+name: Validate application
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  containers:
+    name: Build and validate containers
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Docker Compose configuration
+        run: docker compose config --quiet
+      - name: Build API container and type-check backend
+        run: docker build --target build --tag dimelco-api-check ./backend/node
+      - name: Build Lambda container
+        run: docker build --file ./backend/node/Dockerfile.lambda --tag dimelco-lambda-check ./backend/node
+      - name: Build and lint frontend container
+        run: docker build --target build --tag dimelco-web-check ./frontend
+      - uses: aws-actions/setup-sam@v2
+      - name: Validate AWS SAM template
+        run: sam validate --template-file infrastructure/template.yaml

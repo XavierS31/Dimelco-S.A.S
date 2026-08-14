@@ -45,7 +45,9 @@ app.use('/api/admin', adminRouter);
 app.use(notFound);
 app.use(errorHandler);
 
-if (process.env.NODE_ENV !== 'test') {
+// Lambda imports this module through handler.ts. Do not open a local TCP listener
+// in that runtime; API Gateway invokes the exported handler instead.
+if (process.env.NODE_ENV !== 'test' && !process.env.AWS_LAMBDA_FUNCTION_NAME) {
   app.listen(port, () => {
     console.log(`DIMELCO platform API running on http://localhost:${port}`);
   });

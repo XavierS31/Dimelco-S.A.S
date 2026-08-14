@@ -1,0 +1,22 @@
+version: 1
+applications:
+  - appRoot: frontend
+    frontend:
+      buildPath: /
+      phases:
+        preBuild:
+          commands:
+            - cd frontend
+            - nvm use 22
+            - npm ci
+        build:
+          commands:
+            - npm run lint
+            - npm run build
+      artifacts:
+        baseDirectory: frontend/dist
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - frontend/node_modules/**/*

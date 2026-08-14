@@ -1,6 +1,6 @@
 # Dependencies
 node_modules/
-package-lock.json
+/package-lock.json
 pnpm-lock.yaml
 
 info/
@@ -10,6 +10,7 @@ dist/
 build/
 .next/
 out/
+.aws-sam/
 
 # Environment variables
 .env
@@ -17,7 +18,6 @@ out/
 .env.*.local
 backend/.env
 frontend/.env
-frontend
 
 # IDE
 .vscode/

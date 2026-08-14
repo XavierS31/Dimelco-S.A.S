@@ -1,0 +1,68 @@
+name: Deploy Lambda API
+
+on:
+  workflow_run:
+    workflows: [Validate application]
+    types: [completed]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    name: Build and deploy production API
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      vars.AWS_ROLE_TO_ASSUME != '' &&
+      vars.FRONTEND_URL != '' &&
+      vars.APPLICATION_SECRETS_ARN != ''
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 2
+      - name: Check whether API artifacts changed
+        id: changes
+        run: |
+          if git diff --quiet HEAD^ HEAD -- backend/node infrastructure .github/workflows/deploy-backend.yml; then
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: aws-actions/setup-sam@v2
+        if: steps.changes.outputs.deploy == 'true'
+      - uses: aws-actions/configure-aws-credentials@v4
+        if: steps.changes.outputs.deploy == 'true'
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
+          role-session-name: dimelco-api-deployment
+      - name: Build Lambda image
+        if: steps.changes.outputs.deploy == 'true'
+        run: sam build --template-file infrastructure/template.yaml
+      - name: Deploy API stack
+        if: steps.changes.outputs.deploy == 'true'
+        run: >-
+          sam deploy
+          --template-file .aws-sam/build/template.yaml
+          --stack-name dimelco-api-production
+          --resolve-image-repos
+          --capabilities CAPABILITY_IAM
+          --no-confirm-changeset
+          --no-fail-on-empty-changeset
+          --parameter-overrides
+          Environment=production
+          FrontendUrl="${{ vars.FRONTEND_URL }}"
+          ApplicationSecretsArn="${{ vars.APPLICATION_SECRETS_ARN }}"
+      - name: Verify deployed health endpoint
+        if: steps.changes.outputs.deploy == 'true'
+        env:
+          AWS_REGION: ${{ vars.AWS_REGION || 'us-east-1' }}
+        run: |
+          api_health_url="$(aws cloudformation describe-stacks --stack-name dimelco-api-production --query \"Stacks[0].Outputs[?OutputKey=='ApiHealthUrl'].OutputValue | [0]\" --output text --region \"$AWS_REGION\")"
+          curl --fail --retry 5 --retry-all-errors "$api_health_url"
