@@ -25,7 +25,7 @@ export default function MainPage() {
 
     <section className="section">
       <div className="container split">
-        <div className="split__text"><p className="eyebrow eyebrow--green">La forma Dimelco</p><h2>Resolver bien lo esencial.</h2><p>Trabajamos en almacenamiento, distribución y uso de Gas Natural y GLP, además de climatización y energías alternativas. Cada intervención combina conocimiento de campo, cumplimiento técnico y una comunicación clara con el cliente.</p><p>Nuestra experiencia se concentra en activos donde la continuidad, la seguridad y el buen mantenimiento son parte del resultado, no una promesa adicional.</p><div className="callout">Un solo equipo para acompañar desde la evaluación inicial hasta la puesta en operación.</div></div>
+        <div className="split__text"><p className="eyebrow eyebrow--green">La forma Dimelco</p><h2>Resolver bien lo esencial.</h2><p>DIMELCO S.A.S. es una empresa de ingeniería en Cúcuta, Colombia, especializada en almacenamiento, distribución y uso de Gas Natural y GLP, además de climatización y energías alternativas. Cada intervención combina conocimiento de campo, cumplimiento técnico y una comunicación clara con el cliente.</p><p>Nuestra experiencia se concentra en activos donde la continuidad, la seguridad y el buen mantenimiento son parte del resultado, no una promesa adicional.</p><div className="callout">Un solo equipo para acompañar desde la evaluación inicial hasta la puesta en operación.</div></div>
         <div className="split__image"><img src={engineer} alt="Equipo de ingeniería Dimelco trabajando" /></div>
       </div>
     </section>

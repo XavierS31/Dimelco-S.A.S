@@ -1,5 +1,5 @@
 # Multi-stage images for local Express development and AWS Lambda.
-FROM node:20-alpine AS dependencies
+FROM node:22-alpine AS dependencies
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -9,7 +9,7 @@ COPY tsconfig.json ./
 COPY src ./src
 RUN npm run typecheck && npm run build
 
-FROM node:20-alpine AS production
+FROM node:22-alpine AS production
 WORKDIR /app
 ENV NODE_ENV=production
 COPY package.json package-lock.json ./
@@ -18,7 +18,7 @@ COPY --from=build /app/dist ./dist
 EXPOSE 4000
 CMD ["node", "dist/index.js"]
 
-FROM public.ecr.aws/lambda/nodejs:20 AS lambda
+FROM public.ecr.aws/lambda/nodejs:22 AS lambda
 WORKDIR ${LAMBDA_TASK_ROOT}
 ENV NODE_ENV=production
 COPY package.json package-lock.json ./
