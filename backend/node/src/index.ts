@@ -13,8 +13,9 @@ import { employeeRouter } from './routes/employee.js';
 import { publicJobsRouter } from './routes/publicJobs.js';
 
 export const app = express();
-const port = Number(process.env.PORT);
+const port = Number(process.env.PORT) || 4000;
 const defaultProductionOrigin = 'https://www.dimelcosas.com';
+const requiredCorsOrigins = ['http://localhost:5173', 'https://yourdomain.com'];
 const isLocalDevelopmentOrigin = (origin: string) => /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
 const toOrigin = (value?: string) => {
   if (!value) return undefined;
@@ -25,7 +26,7 @@ const toOrigin = (value?: string) => {
   }
 };
 const allowedOrigins = new Set(
-  [defaultProductionOrigin, process.env.FRONTEND_URL, ...(process.env.ALLOWED_ORIGINS || '').split(',')]
+  [defaultProductionOrigin, ...requiredCorsOrigins, process.env.FRONTEND_URL, ...(process.env.ALLOWED_ORIGINS || '').split(',')]
     .map(toOrigin)
     .filter((origin): origin is string => Boolean(origin)),
 );
@@ -76,8 +77,9 @@ app.use(errorHandler);
 // usable locally through the listener below.
 export const handler = serverless(app);
 
-// Do not open a local TCP listener in Lambda; API Gateway invokes `handler`.
-if (process.env.NODE_ENV !== 'test' && !process.env.AWS_LAMBDA_FUNCTION_NAME) {
+// Local development uses the normal Express listener. In Lambda, API Gateway
+// invokes the exported handler instead.
+if (process.env.NODE_ENV !== 'production') {
   app.listen(port, () => {
     console.log(`DIMELCO platform API running on http://localhost:${port}`);
   });

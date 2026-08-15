@@ -1,0 +1,10 @@
+version = 0.1
+
+[default.deploy.parameters]
+region = "us-east-2"
+stack_name = "dimelco-backend-prod"
+confirm_changeset = false
+capabilities = "CAPABILITY_IAM"
+resolve_s3 = true
+resolve_image_repos = true
+parameter_overrides = "Environment=\"production\" FrontendUrl=\"https://www.dimelcosas.com\" ApplicationSecretsArn=\"arn:aws:secretsmanager:us-east-2:612300450348:secret:Dimelco_SAS-yfwiSd\""

@@ -17,8 +17,8 @@ Parameters:
 
 Globals:
   Function:
-    Timeout: 29
-    MemorySize: 1024
+    Timeout: 15
+    MemorySize: 512
     Tracing: Active
     Environment:
       Variables:
@@ -73,9 +73,6 @@ Resources:
       ImageConfig:
         Command: [dist/index.handler]
       AutoPublishAlias: live
-      DeploymentPreference:
-        Type: Canary10Percent5Minutes
-        Alarms: [!Ref ApiFunctionErrorAlarm]
       Policies:
         - AWSLambdaBasicExecutionRole
         - AWSXRayDaemonWriteAccess
@@ -88,7 +85,7 @@ Resources:
             Method: ANY
     Metadata:
       DockerContext: ../backend/node
-      Dockerfile: Dockerfile.lambda
+      Dockerfile: Dockerfile
       DockerTag: dimelco-api
 
   ApiFunctionErrorAlarm:
@@ -108,8 +105,8 @@ Resources:
           Value: !Ref ApiFunction
 
 Outputs:
-  ApiUrl:
-    Description: API Gateway base URL. Set this exact value as VITE_API_URL in Amplify.
+  HttpApiUrl:
+    Description: API Gateway HTTP API base URL. Set this exact value as VITE_API_URL in Amplify.
     Value: !Sub 'https://${DimelcoHttpApi}.execute-api.${AWS::Region}.amazonaws.com'
   ApiHealthUrl:
     Description: Health endpoint used by the deployment workflow.
