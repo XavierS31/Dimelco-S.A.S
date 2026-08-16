@@ -32,7 +32,7 @@ const extensionFor = (mimeType: string) => {
 
 export const publicJobsRouter = Router();
 
-publicJobsRouter.get('/', async (_req, res, next) => {
+publicJobsRouter.get('/', async (_req, res) => {
   try {
     const { data, error } = await getSupabase()
       .from('jobs')
@@ -42,8 +42,12 @@ publicJobsRouter.get('/', async (_req, res, next) => {
 
     if (error) throw error;
     res.json({ jobs: data ?? [] });
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    console.error('Jobs fetch error:', err);
+    return res.status(500).json({
+      error: 'Failed to fetch jobs',
+      details: err instanceof Error ? err.message : err,
+    });
   }
 });
 

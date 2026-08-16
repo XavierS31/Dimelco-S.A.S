@@ -52,7 +52,16 @@ const corsOptions: CorsOptions = {
 };
 
 app.set('trust proxy', 1);
-app.use(helmet({ crossOriginResourcePolicy: false }));
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+    contentSecurityPolicy: {
+      directives: {
+        imgSrc: ["'self'", 'data:', 'https://authjs.dev', 'https://*.googleusercontent.com', 'https://www.gstatic.com'],
+      },
+    },
+  }),
+);
 app.use(cors(corsOptions));
 // Explicitly answer API Gateway/browser CORS preflight requests before routes.
 app.options('*', cors(corsOptions));
