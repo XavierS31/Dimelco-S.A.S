@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PageShell from '../components/PageShell';
 import WorkspaceLayout from '../components/WorkspaceLayout';
-import { api, signOut } from '../lib/api';
+import { ApiError, api, signOut } from '../lib/api';
 
 type Employee = { full_name: string; role: 'admin' | 'employee'; department: string | null; position: string | null };
 type CompanyReport = { id: string; task_description: string; hours_logged: number; report_date: string; employees: { full_name: string; department: string | null } | null };
@@ -57,7 +57,17 @@ export default function DashboardPage() {
     api<{ employee: Employee }>('/api/employee/me').then(({ employee }) => {
       if (employee.role === 'admin') { navigate('/admin', { replace: true }); return; }
       setProfile(employee); setAccess('allowed'); void load('inicio');
-    }).catch(() => setAccess('error'));
+    }).catch((error) => {
+      if (error instanceof ApiError && error.status === 403) {
+        navigate('/acceso-restringido', { replace: true });
+        return;
+      }
+      if (error instanceof ApiError && error.status === 401) {
+        navigate('/login', { replace: true });
+        return;
+      }
+      setAccess('error');
+    });
   }, [navigate]);
 
   const selectSection = (value: string) => { const next = value as Section; setSection(next); void load(next); };

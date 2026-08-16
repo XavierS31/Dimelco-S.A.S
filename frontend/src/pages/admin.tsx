@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PageShell from '../components/PageShell';
 import WorkspaceLayout from '../components/WorkspaceLayout';
-import { api, signOut } from '../lib/api';
+import { ApiError, api, signOut } from '../lib/api';
 
 type Employee = { full_name: string; role: 'admin' | 'employee'; department: string | null; position: string | null };
 type Report = { id: string; task_description: string; hours_logged: number; report_date: string; employees: { full_name: string; department: string | null } | null };
@@ -65,10 +65,11 @@ export default function AdminPage() {
 
   useEffect(() => {
     api<{ employee: Employee }>('/api/employee/me').then(({ employee }) => {
-      if (employee.role !== 'admin') { setAccess('denied'); return; }
+      if (employee.role !== 'admin') { navigate('/dashboard', { replace: true }); return; }
       setProfile(employee); setAccess('allowed'); void load('inicio');
     }).catch((error) => {
-      if (error instanceof Error && 'status' in error && error.status === 401) navigate('/login', { replace: true });
+      if (error instanceof ApiError && error.status === 401) navigate('/login', { replace: true });
+      else if (error instanceof ApiError && error.status === 403) navigate('/acceso-restringido', { replace: true });
       else setAccess('error');
     });
   }, [navigate]);

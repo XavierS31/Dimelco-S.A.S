@@ -10,6 +10,7 @@ import ContactPage from './pages/contacts'
 import LoginPage from './pages/login'
 import DashboardPage from './pages/dashboard'
 import AdminPage from './pages/admin'
+import AccessDeniedPage from './pages/accessDenied'
 import './App.css'
 
 function ScrollToTop() {
@@ -35,8 +36,9 @@ function App() {
         <Route path="/carreras/:id" element={<JobDetailPage />} />
         <Route path="/contacto" element={<ContactPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/dashboard/*" element={<DashboardPage />} />
+        <Route path="/admin/*" element={<AdminPage />} />
+        <Route path="/acceso-restringido" element={<AccessDeniedPage />} />
       </Routes>
     </>
   )
