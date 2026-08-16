@@ -1,4 +1,4 @@
-export const apiUrl = (import.meta.env.VITE_API_URL || 'http://localhost:4000').replace(/\/$/, '');
+export const apiUrl = (import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || 'http://localhost:4000').replace(/\/$/, '');
 
 export class ApiError extends Error {
   constructor(public status: number, message: string, public fields?: Record<string, string>) {

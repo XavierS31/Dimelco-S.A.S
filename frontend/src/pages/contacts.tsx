@@ -14,23 +14,24 @@ export default function ContactPage() {
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = event.currentTarget;
     setState('loading');
     setMessage('');
     setFieldErrors({});
 
-    const form = new FormData(event.currentTarget);
+    const formData = new FormData(form);
     try {
       await api('/api/contact', {
         method: 'POST',
         body: JSON.stringify({
-          full_name: form.get('nombre'),
-          company: form.get('empresa'),
-          email: form.get('correo'),
-          subject: form.get('tema'),
-          message: form.get('mensaje'),
+          full_name: formData.get('nombre'),
+          company: formData.get('empresa'),
+          email: formData.get('correo'),
+          subject: formData.get('tema'),
+          message: formData.get('mensaje'),
         }),
       });
-      event.currentTarget.reset();
+      form.reset();
       setState('success');
       setMessage('Recibimos su mensaje. Nuestro equipo lo revisará y responderá por el canal adecuado.');
     } catch (error) {

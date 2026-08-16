@@ -17,11 +17,21 @@ jobs:
       - name: Validate Docker Compose configuration
         run: docker compose config --quiet
       - name: Build API container and type-check backend
-        run: docker build --target build --tag dimelco-api-check ./backend/node
+        run: docker build --no-cache --target build --tag dimelco-api-check ./backend/node
       - name: Build Lambda container
-        run: docker build --file ./backend/node/Dockerfile.lambda --tag dimelco-lambda-check ./backend/node
+        run: docker build --no-cache --file ./backend/node/Dockerfile.lambda --tag dimelco-lambda-check ./backend/node
+      - name: Build frontend with API Gateway URL
+        env:
+          VITE_API_BASE_URL: https://3l56185nu6.execute-api.us-east-2.amazonaws.com
+        run: |
+          cd frontend
+          npm ci
+          npm run lint
+          npm run build
       - name: Build and lint frontend container
-        run: docker build --target build --tag dimelco-web-check ./frontend
+        env:
+          VITE_API_BASE_URL: https://3l56185nu6.execute-api.us-east-2.amazonaws.com
+        run: docker build --no-cache --build-arg VITE_API_BASE_URL="$VITE_API_BASE_URL" --target build --tag dimelco-web-check ./frontend
       - uses: aws-actions/setup-sam@v2
       - name: Validate AWS SAM template
         run: sam validate --template-file infrastructure/template.yaml --region us-east-2

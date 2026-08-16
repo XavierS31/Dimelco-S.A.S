@@ -37,7 +37,7 @@ jobs:
         run: sam validate --template-file infrastructure/template.yaml --region us-east-2
 
       - name: Build SAM container images
-        run: sam build --template-file infrastructure/template.yaml
+        run: sam build --use-container --no-cached --template-file infrastructure/template.yaml
 
       - name: Deploy
-        run: sam deploy --no-confirm-changeset --config-file samconfig.toml --region us-east-2
+        run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --force-upload --resolve-s3 --config-file samconfig.toml --region us-east-2

@@ -7,6 +7,7 @@ const googleClientSecret = process.env.AUTH_GOOGLE_SECRET || process.env.GOOGLE_
 // AUTH_URL is the canonical public Auth.js endpoint (including /api/auth).
 // NEXTAUTH_URL remains supported for backwards compatibility.
 const authUrl = process.env.AUTH_URL || process.env.NEXTAUTH_URL;
+const frontendUrl = (process.env.FRONTEND_URL || 'http://localhost:5173').replace(/\/$/, '');
 const hasGoogleCredentials = Boolean(googleClientId && googleClientSecret);
 
 export const authConfig: ExpressAuthConfig = {
@@ -22,6 +23,12 @@ export const authConfig: ExpressAuthConfig = {
     },
   },
   session: { strategy: 'jwt' },
+  // Auth.js GET /signin failures and fallback navigation must return to the
+  // custom browser UI rather than render a page on the API Gateway origin.
+  pages: {
+    signIn: `${frontendUrl}/login`,
+    error: `${frontendUrl}/login`,
+  },
   providers: hasGoogleCredentials
     ? [Google({ clientId: googleClientId, clientSecret: googleClientSecret })]
     : [],
@@ -31,7 +38,6 @@ export const authConfig: ExpressAuthConfig = {
       return token;
     },
     async redirect({ url, baseUrl }) {
-      const frontendUrl = process.env.FRONTEND_URL;
       // Prefer the browser application, then the canonical API Gateway Auth.js
       // endpoint. The latter preserves a gateway stage/base path if no frontend
       // URL is configured or Auth.js receives an unexpected callback URL.
