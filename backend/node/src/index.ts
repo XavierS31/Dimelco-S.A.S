@@ -1,10 +1,11 @@
 import './env.js';
-import cors, { type CorsOptions } from 'cors';
+import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import serverless from 'serverless-http';
 import { authHandler, hasAuthProvider } from './auth.js';
 import { errorHandler, HttpError, notFound } from './lib/http.js';
+import { corsOptions } from './middleware/cors.js';
 import { authLimiter, generalApiLimiter } from './middleware/rateLimiter.js';
 import { adminRouter } from './routes/admin.js';
 import { chatRouter } from './routes/chat.js';
@@ -13,45 +14,9 @@ import { employeeRouter } from './routes/employee.js';
 import { publicJobsRouter } from './routes/publicJobs.js';
 
 export const app = express();
+app.set('trust proxy', true);
 const port = Number(process.env.PORT) || 4000;
-const defaultProductionOrigin = 'https://www.dimelcosas.com';
-const requiredCorsOrigins = ['http://localhost:5173', 'https://yourdomain.com'];
-const isLocalDevelopmentOrigin = (origin: string) => /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
-const toOrigin = (value?: string) => {
-  if (!value) return undefined;
-  try {
-    return new URL(value.trim()).origin;
-  } catch {
-    return undefined;
-  }
-};
-const allowedOrigins = new Set(
-  [defaultProductionOrigin, ...requiredCorsOrigins, process.env.FRONTEND_URL, ...(process.env.ALLOWED_ORIGINS || '').split(',')]
-    .map(toOrigin)
-    .filter((origin): origin is string => Boolean(origin)),
-);
-const corsOptions: CorsOptions = {
-  origin: (origin, callback) => {
-    const requestOrigin = toOrigin(origin);
-    const isAllowed =
-      !origin ||
-      (requestOrigin !== undefined && allowedOrigins.has(requestOrigin)) ||
-      (process.env.NODE_ENV !== 'production' && isLocalDevelopmentOrigin(origin));
 
-    if (isAllowed) {
-      callback(null, true);
-      return;
-    }
-
-    callback(new HttpError(403, 'Origin is not allowed'));
-  },
-  credentials: true,
-  methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token'],
-  optionsSuccessStatus: 204,
-};
-
-app.set('trust proxy', 1);
 app.use(
   helmet({
     crossOriginResourcePolicy: false,
