@@ -8,6 +8,13 @@ import { contactMessageSchema } from '../schemas.js';
 
 export const contactRouter = Router();
 
+const contactFieldNames: Record<string, string> = {
+  full_name: 'name',
+  email: 'email',
+  subject: 'subject',
+  message: 'message',
+};
+
 const contactCorsHeaders: RequestHandler = (_req, res, next) => {
   if (_req.headers.origin) res.setHeader('Access-Control-Allow-Origin', _req.headers.origin);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -30,7 +37,12 @@ contactRouter.post('/', cors(corsOptions), contactCorsHeaders, contactMessageLim
   } catch (err) {
     console.error('Contact request error:', err);
     if (err instanceof ZodError) {
-      return res.status(400).json({ error: 'Invalid request data', details: err.flatten() });
+      const fields = Object.fromEntries(
+        err.issues
+          .map((issue) => [contactFieldNames[String(issue.path[0])] ?? String(issue.path[0]), issue.message])
+          .filter(([field]) => field),
+      );
+      return res.status(400).json({ error: 'Validation failed', fields });
     }
     return res.status(500).json({
       error: 'Failed to process contact request',

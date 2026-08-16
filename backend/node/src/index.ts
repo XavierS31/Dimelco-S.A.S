@@ -23,6 +23,12 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         imgSrc: ["'self'", 'data:', 'https://authjs.dev', 'https://*.googleusercontent.com', 'https://www.gstatic.com'],
+        formAction: [
+          "'self'",
+          'https://3l56185nu6.execute-api.us-east-2.amazonaws.com',
+          'https://dimelcosas.com',
+          'https://www.dimelcosas.com',
+        ],
       },
     },
   }),

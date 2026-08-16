@@ -12,6 +12,15 @@ const hasGoogleCredentials = Boolean(googleClientId && googleClientSecret);
 export const authConfig: ExpressAuthConfig = {
   trustHost: true,
   secret: process.env.AUTH_SECRET,
+  useSecureCookies: process.env.NODE_ENV === 'production',
+  cookies: {
+    csrfToken: {
+      options: {
+        sameSite: 'lax',
+        secure: true,
+      },
+    },
+  },
   session: { strategy: 'jwt' },
   providers: hasGoogleCredentials
     ? [Google({ clientId: googleClientId, clientSecret: googleClientSecret })]

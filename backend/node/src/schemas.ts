@@ -36,11 +36,11 @@ export const reportSchema = z.object({
 });
 
 export const contactMessageSchema = z.object({
-  full_name: z.string().trim().min(3).max(160),
+  full_name: z.string({ error: 'Name is required' }).trim().min(3, 'Name must be at least 3 characters').max(160),
   company: z.string().trim().max(160).optional().or(z.literal('')),
-  email: z.string().trim().email().max(254).transform((email) => email.toLowerCase()),
-  subject: z.string().trim().min(3).max(160),
-  message: z.string().trim().min(10).max(5000),
+  email: z.string({ error: 'Email is required' }).trim().min(1, 'Email is required').email('Please enter a valid email address').max(254).transform((email) => email.toLowerCase()),
+  subject: z.string({ error: 'Subject is required' }).trim().min(1, 'Subject is required').max(160),
+  message: z.string({ error: 'Message is required' }).trim().min(1, 'Message is required').max(5000),
 });
 
 export const contactMessageStatusSchema = z.object({

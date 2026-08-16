@@ -1,7 +1,7 @@
 export const apiUrl = (import.meta.env.VITE_API_URL || 'http://localhost:4000').replace(/\/$/, '');
 
 export class ApiError extends Error {
-  constructor(public status: number, message: string) {
+  constructor(public status: number, message: string, public fields?: Record<string, string>) {
     super(message);
     this.name = 'ApiError';
   }
@@ -24,7 +24,7 @@ export async function api<T>(path: string, options: RequestOptions = {}): Promis
   const payload = isJson ? await response.json() : null;
 
   if (!response.ok) {
-    throw new ApiError(response.status, payload?.error || 'No fue posible completar la solicitud.');
+    throw new ApiError(response.status, payload?.error || 'No fue posible completar la solicitud.', payload?.fields);
   }
 
   return payload as T;
