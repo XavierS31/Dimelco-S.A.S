@@ -27,12 +27,28 @@ const googleClientSecret = process.env.AUTH_GOOGLE_SECRET || process.env.GOOGLE_
 const frontendUrl = (process.env.FRONTEND_URL || 'https://www.dimelcosas.com').replace(/\/$/, '');
 const frontendOrigin = new URL(frontendUrl).origin;
 const hasGoogleCredentials = Boolean(googleClientId && googleClientSecret);
+const configuredAdminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+
+const isConfiguredAdmin = (email?: string | null) => Boolean(
+  configuredAdminEmail && email?.trim().toLowerCase() === configuredAdminEmail,
+);
 
 export const authConfig: ExpressAuthConfig = {
   trustHost: true,
   secret: process.env.AUTH_SECRET,
   useSecureCookies: process.env.NODE_ENV === 'production',
   cookies: {
+    // The frontend and API use different origins. SameSite=None is required so
+    // the browser includes the Auth.js session on credentialed API requests.
+    sessionToken: {
+      name: process.env.NODE_ENV === 'production' ? '__Secure-authjs.session-token' : 'authjs.session-token',
+      options: {
+        httpOnly: true,
+        sameSite: 'none',
+        path: '/',
+        secure: true,
+      },
+    },
     csrfToken: {
       name: process.env.NODE_ENV === 'production' ? '__Host-authjs.csrf-token' : 'authjs.csrf-token',
       options: {
@@ -50,6 +66,7 @@ export const authConfig: ExpressAuthConfig = {
   callbacks: {
     async jwt({ token }) {
       if (token.email) token.email = token.email.toLowerCase();
+      if (isConfiguredAdmin(token.email)) token.role = 'admin';
       return token;
     },
     async redirect({ url }) {
