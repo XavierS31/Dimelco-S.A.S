@@ -22,7 +22,7 @@ jobs:
         run: docker build --no-cache --file ./backend/node/Dockerfile.lambda --tag dimelco-lambda-check ./backend/node
       - name: Build frontend with API Gateway URL
         env:
-          VITE_API_BASE_URL: https://3l56185nu6.execute-api.us-east-2.amazonaws.com
+          VITE_API_BASE_URL: https://api.dimelcosas.com
         run: |
           cd frontend
           npm ci
@@ -30,7 +30,7 @@ jobs:
           npm run build
       - name: Build and lint frontend container
         env:
-          VITE_API_BASE_URL: https://3l56185nu6.execute-api.us-east-2.amazonaws.com
+          VITE_API_BASE_URL: https://api.dimelcosas.com
         run: docker build --no-cache --build-arg VITE_API_BASE_URL="$VITE_API_BASE_URL" --target build --tag dimelco-web-check ./frontend
       - uses: aws-actions/setup-sam@v2
       - name: Validate AWS SAM template

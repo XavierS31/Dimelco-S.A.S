@@ -23,6 +23,7 @@ Globals:
     Environment:
       Variables:
         NODE_ENV: production
+        AUTH_URL: https://api.dimelcosas.com
         FRONTEND_URL: !Ref FrontendUrl
         SUPABASE_URL: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:SUPABASE_URL}}'
         SUPABASE_SECRET_KEY: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:SUPABASE_SECRET_KEY}}'
@@ -106,8 +107,11 @@ Resources:
 
 Outputs:
   HttpApiUrl:
-    Description: API Gateway HTTP API base URL. Set this exact value as VITE_API_URL in Amplify.
+    Description: Underlying API Gateway HTTP API base URL.
     Value: !Sub 'https://${DimelcoHttpApi}.execute-api.${AWS::Region}.amazonaws.com'
+  PublicApiUrl:
+    Description: Public custom API domain. Set this exact value as VITE_API_URL in Amplify.
+    Value: https://api.dimelcosas.com
   ApiHealthUrl:
     Description: Health endpoint used by the deployment workflow.
     Value: !Sub 'https://${DimelcoHttpApi}.execute-api.${AWS::Region}.amazonaws.com/health'

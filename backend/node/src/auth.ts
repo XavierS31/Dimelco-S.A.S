@@ -13,11 +13,14 @@ const stripAuthBasePath = (value: string) => {
   }
 };
 
+const defaultAuthUrl = 'https://api.dimelcosas.com';
+
 // ExpressAuth reads process.env directly. Strip the mounted Auth.js path before
 // it initializes so it can add `/api/auth` exactly once (while retaining an
 // API Gateway stage path such as `/prod`).
 const authUrlKey = process.env.AUTH_URL ? 'AUTH_URL' : process.env.NEXTAUTH_URL ? 'NEXTAUTH_URL' : undefined;
 if (authUrlKey) process.env[authUrlKey] = stripAuthBasePath(process.env[authUrlKey]!);
+else process.env.AUTH_URL = defaultAuthUrl;
 
 const googleClientId = process.env.AUTH_GOOGLE_ID || process.env.GOOGLE_CLIENT_ID;
 const googleClientSecret = process.env.AUTH_GOOGLE_SECRET || process.env.GOOGLE_CLIENT_SECRET;
