@@ -11,6 +11,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-2
+      AWS_DEFAULT_REGION: us-east-2
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -31,7 +34,7 @@ jobs:
         uses: aws-actions/setup-sam@v2
 
       - name: Validate SAM template
-        run: sam validate --template-file infrastructure/template.yaml
+        run: sam validate --template-file infrastructure/template.yaml --region us-east-2
 
       - name: Build SAM container images
         run: sam build --template-file infrastructure/template.yaml
