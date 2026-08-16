@@ -6,7 +6,7 @@ const googleClientId = process.env.AUTH_GOOGLE_ID || process.env.GOOGLE_CLIENT_I
 const googleClientSecret = process.env.AUTH_GOOGLE_SECRET || process.env.GOOGLE_CLIENT_SECRET;
 // AUTH_URL is the canonical public Auth.js endpoint (including /api/auth).
 // NEXTAUTH_URL remains supported for backwards compatibility.
-const authUrl = process.env.AUTH_URL ?? process.env.NEXTAUTH_URL;
+const authUrl = process.env.AUTH_URL || process.env.NEXTAUTH_URL;
 const hasGoogleCredentials = Boolean(googleClientId && googleClientSecret);
 
 export const authConfig: ExpressAuthConfig = {

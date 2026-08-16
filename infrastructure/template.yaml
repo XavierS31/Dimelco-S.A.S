@@ -29,9 +29,6 @@ Globals:
         AUTH_SECRET: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:AUTH_SECRET}}'
         AUTH_GOOGLE_ID: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:AUTH_GOOGLE_ID}}'
         AUTH_GOOGLE_SECRET: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:AUTH_GOOGLE_SECRET}}'
-        # Keep Auth.js callbacks on the public API Gateway endpoint, not the
-        # internal Lambda host. The handler also honors this path in redirects.
-        AUTH_URL: !Sub 'https://${DimelcoHttpApi}.execute-api.${AWS::Region}.amazonaws.com/api/auth'
         ADMIN_EMAIL: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:ADMIN_EMAIL}}'
         ADMIN_FULL_NAME: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:ADMIN_FULL_NAME}}'
         ADMIN_DEPARTMENT: !Sub '{{resolve:secretsmanager:${ApplicationSecretsArn}:SecretString:ADMIN_DEPARTMENT}}'
