@@ -1,10 +1,11 @@
 import { ExpressAuth, type ExpressAuthConfig } from '@auth/express';
+import type { RequestHandler } from 'express';
 import Google from '@auth/express/providers/google';
 import './env.js';
 
 const googleClientId = process.env.AUTH_GOOGLE_ID || process.env.GOOGLE_CLIENT_ID;
 const googleClientSecret = process.env.AUTH_GOOGLE_SECRET || process.env.GOOGLE_CLIENT_SECRET;
-const frontendUrl = (process.env.FRONTEND_URL || 'http://localhost:5173').replace(/\/$/, '');
+const frontendUrl = (process.env.FRONTEND_URL || 'https://www.dimelcosas.com').replace(/\/$/, '');
 const frontendOrigin = new URL(frontendUrl).origin;
 const hasGoogleCredentials = Boolean(googleClientId && googleClientSecret);
 
@@ -21,12 +22,6 @@ export const authConfig: ExpressAuthConfig = {
     },
   },
   session: { strategy: 'jwt' },
-  // Auth.js prefixes custom pages with the request origin, so these must stay
-  // relative; absolute values produce malformed concatenated redirect URLs.
-  pages: {
-    signIn: '/login',
-    error: '/login',
-  },
   providers: hasGoogleCredentials
     ? [Google({ clientId: googleClientId, clientSecret: googleClientSecret })]
     : [],
@@ -45,6 +40,22 @@ export const authConfig: ExpressAuthConfig = {
   },
 };
 
-export const authHandler = ExpressAuth(authConfig);
+const expressAuthHandler = ExpressAuth(authConfig);
+
+// Auth.js error pages are generated from the API request origin. Return those
+// errors to the SPA instead, preserving the error query for the login UI.
+export const authHandler: RequestHandler = (req, res, next) => {
+  if (req.method === 'GET' && req.path === '/error') {
+    const query = new URLSearchParams();
+    for (const [key, value] of Object.entries(req.query)) {
+      if (typeof value === 'string') query.set(key, value);
+    }
+    const suffix = query.size ? `?${query}` : '';
+    res.redirect(302, `${frontendUrl}/login${suffix}`);
+    return;
+  }
+
+  void expressAuthHandler(req, res, next);
+};
 
 export const hasAuthProvider = () => hasGoogleCredentials;
