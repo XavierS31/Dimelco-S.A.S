@@ -24,4 +24,4 @@ jobs:
         run: docker build --target build --tag dimelco-web-check ./frontend
       - uses: aws-actions/setup-sam@v2
       - name: Validate AWS SAM template
-        run: sam validate --template-file infrastructure/template.yaml
+        run: sam validate --template-file infrastructure/template.yaml --region us-east-2
